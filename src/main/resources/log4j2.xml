@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="TRACE" monitorInterval="30" name="CreditLimit">
+	<Appenders>
+		<Syslog
+			id="Catalogo"
+			name="graylog" 
+			format="RFC5424"
+			host="logdesa.telecom.com.ar" 
+			port="5553" 
+			protocol="TCP"
+			appName="CreditLimit" 
+			includeMDC="true" 
+			facility="SYSLOG"
+			enterpriseNumber="5562" 
+			newLine="true" 
+			messageId="MSGID"
+			mdcId="mdc" />
+			
+		<Console name="console" target="SYSTEM_OUT">
+			<PatternLayout
+				pattern="TOCONSOLE %d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+		</Console>
+	</Appenders>
+	
+	<Loggers>
+		<Logger name="com.demo.teco" level="error" additivity="false">
+			<AppenderRef ref="graylog" />
+			<AppenderRef ref="console" />
+		</Logger>
+		<Root level="error">
+			<AppenderRef ref="console" />
+		</Root>
+	</Loggers>
+</Configuration>
