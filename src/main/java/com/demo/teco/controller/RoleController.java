@@ -24,10 +24,10 @@ public class RoleController {
 	@RequestMapping(value = "/listar", method = RequestMethod.GET)
 	public List<Role> listar(Model model) {
 		LOGGER.trace("Texto TRACE");
-		LOGGER.info("Texto error");
+		LOGGER.info("Texto info");
 		List<Role> roles = roleService.findAll();
 		
-		LOGGER.trace("Texto TRACE2");
+		LOGGER.error("Texto error");
 		return roles;
 	}
 
