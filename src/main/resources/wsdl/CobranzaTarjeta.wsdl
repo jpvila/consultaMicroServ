@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://services.webservices.ct.telecom.com.ar" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://services.webservices.ct.telecom.com.ar" xmlns:intf="http://services.webservices.ct.telecom.com.ar" xmlns:tns2="http://consultaFacturasMic.entities.webservices.ct.telecom.com.ar" xmlns:tns3="http://consultaFacturasDeimon.entities.webservices.ct.telecom.com.ar" xmlns:tns4="http://consultaCliente.entities.webservices.ct.telecom.com.ar" xmlns:tns5="http://pagoFactura.entities.webservices.ct.telecom.com.ar" xmlns:tns6="http://consultaFacturasDuc.entities.webservices.ct.telecom.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+    <schema elementFormDefault="qualified" targetNamespace="http://services.webservices.ct.telecom.com.ar" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://services.webservices.ct.telecom.com.ar" xmlns:intf="http://services.webservices.ct.telecom.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+   <element name="consultaFacturasMIC">
+    <complexType>
+     <sequence>
+      <element name="tipo" nillable="true" type="xsd:string"/>
+      <element name="value1" nillable="true" type="xsd:string"/>
+      <element name="value2" nillable="true" type="xsd:string"/>
+      <element name="token" nillable="true" type="xsd:string"/>
+      <element name="timeStamp" nillable="true" type="xsd:string"/>
+      <element name="idAplicativo" nillable="true" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="consultaFacturasMICResponse">
+    <complexType>
+     <sequence>
+      <element name="consultaFacturasMICReturn" nillable="true" type="tns2:ConsultaFacturasMICResult"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="consultaFacturasDEIMON">
+    <complexType>
+     <sequence>
+      <element name="tramite" nillable="true" type="xsd:string"/>
+      <element name="token" nillable="true" type="xsd:string"/>
+      <element name="timeStamp" nillable="true" type="xsd:string"/>
+      <element name="idAplicativo" nillable="true" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="consultaFacturasDEIMONResponse">
+    <complexType>
+     <sequence>
+      <element name="consultaFacturasDEIMONReturn" nillable="true" type="tns3:ConsultaFacturasDEIMONResult"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="consultaCliente">
+    <complexType>
+     <sequence>
+      <element name="numeroCliente" nillable="true" type="xsd:string"/>
+      <element name="token" nillable="true" type="xsd:string"/>
+      <element name="timeStamp" nillable="true" type="xsd:string"/>
+      <element name="idAplicativo" nillable="true" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="consultaClienteResponse">
+    <complexType>
+     <sequence>
+      <element name="consultaClienteReturn" nillable="true" type="tns4:ConsultaClienteResult"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="pagoFactura">
+    <complexType>
+     <sequence>
+      <element name="idSession" nillable="true" type="xsd:string"/>
+      <element name="idDocumento" nillable="true" type="xsd:string"/>
+      <element name="codigoSeguridad" nillable="true" type="xsd:string"/>
+      <element name="nroTarjeta" nillable="true" type="xsd:string"/>
+      <element name="fechaVencimiento" nillable="true" type="xsd:string"/>
+      <element name="documento" nillable="true" type="xsd:string"/>
+      <element name="ani" nillable="true" type="xsd:string"/>
+      <element name="token" nillable="true" type="xsd:string"/>
+      <element name="timeStamp" nillable="true" type="xsd:string"/>
+      <element name="idAplicativo" nillable="true" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="pagoFacturaResponse">
+    <complexType>
+     <sequence>
+      <element name="pagoFacturaReturn" nillable="true" type="tns5:PagoFacturaResult"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="consultaFacturasDUC">
+    <complexType>
+     <sequence>
+      <element name="tipo" nillable="true" type="xsd:string"/>
+      <element name="value1" nillable="true" type="xsd:string"/>
+      <element name="value2" nillable="true" type="xsd:string"/>
+      <element name="token" nillable="true" type="xsd:string"/>
+      <element name="timeStamp" nillable="true" type="xsd:string"/>
+      <element name="idAplicativo" nillable="true" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="consultaFacturasDUCResponse">
+    <complexType>
+     <sequence>
+      <element name="consultaFacturasDUCReturn" nillable="true" type="tns6:ConsultaFacturasDUCResult"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+    <schema elementFormDefault="qualified" targetNamespace="http://consultaFacturasMic.entities.webservices.ct.telecom.com.ar" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://services.webservices.ct.telecom.com.ar" xmlns:intf="http://services.webservices.ct.telecom.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+   <complexType name="ConsultaFacturasMICResult">
+    <sequence>
+     <element name="codigoRespuesta" nillable="true" type="xsd:string"/>
+     <element name="idSession" nillable="true" type="xsd:string"/>
+     <element name="mensaje" nillable="true" type="xsd:string"/>
+     <element maxOccurs="unbounded" name="facturas" nillable="true" type="tns2:FacturaWS"/>
+    </sequence>
+   </complexType>
+   <complexType name="FacturaWS">
+    <sequence>
+     <element name="estado" nillable="true" type="xsd:string"/>
+     <element name="fechaPrimerVencimiento" nillable="true" type="xsd:string"/>
+     <element name="fechaSegundoVencimiento" nillable="true" type="xsd:string"/>
+     <element name="idDocumento" nillable="true" type="xsd:string"/>
+     <element name="lugarDePago" nillable="true" type="xsd:string"/>
+     <element name="numeroFactura" nillable="true" type="xsd:string"/>
+     <element name="importe" type="xsd:double"/>
+    </sequence>
+   </complexType>
+  </schema>
+    <schema elementFormDefault="qualified" targetNamespace="http://consultaFacturasDeimon.entities.webservices.ct.telecom.com.ar" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://services.webservices.ct.telecom.com.ar" xmlns:intf="http://services.webservices.ct.telecom.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+   <complexType name="ConsultaFacturasDEIMONResult">
+    <sequence>
+     <element name="codigoRespuesta" nillable="true" type="xsd:string"/>
+     <element name="idSession" nillable="true" type="xsd:string"/>
+     <element name="mensaje" nillable="true" type="xsd:string"/>
+     <element maxOccurs="unbounded" name="facturaDeimon" nillable="true" type="tns3:FacturaDeimonWS"/>
+    </sequence>
+   </complexType>
+   <complexType name="FacturaDeimonWS">
+    <sequence>
+     <element name="cuotaConvenio" nillable="true" type="xsd:string"/>
+     <element name="estadoCuota" nillable="true" type="xsd:string"/>
+     <element name="fechaVencimiento" nillable="true" type="xsd:string"/>
+     <element name="idDocumento" nillable="true" type="xsd:string"/>
+     <element name="nroFacturaLegal" nillable="true" type="xsd:string"/>
+     <element name="numeroTramite" nillable="true" type="xsd:string"/>
+     <element name="tipoConvenio" nillable="true" type="xsd:string"/>
+     <element name="importe" type="xsd:double"/>
+    </sequence>
+   </complexType>
+  </schema>
+    <schema elementFormDefault="qualified" targetNamespace="http://consultaCliente.entities.webservices.ct.telecom.com.ar" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://services.webservices.ct.telecom.com.ar" xmlns:intf="http://services.webservices.ct.telecom.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+   <complexType name="ConsultaClienteResult">
+    <sequence>
+     <element name="codigoRespuesta" nillable="true" type="xsd:string"/>
+     <element name="mensaje" nillable="true" type="xsd:string"/>
+     <element name="cliente" nillable="true" type="tns4:ClienteWS"/>
+    </sequence>
+   </complexType>
+   <complexType name="ClienteWS">
+    <sequence>
+     <element name="apellido" nillable="true" type="xsd:string"/>
+     <element name="categoriaCliente" nillable="true" type="xsd:string"/>
+     <element name="nombre" nillable="true" type="xsd:string"/>
+     <element maxOccurs="unbounded" name="acuerdos" nillable="true" type="tns4:AcuerdoWS"/>
+    </sequence>
+   </complexType>
+   <complexType name="AcuerdoWS">
+    <sequence>
+     <element name="domicilioFacturacion" nillable="true" type="xsd:string"/>
+     <element name="lineaCabecera" nillable="true" type="xsd:string"/>
+     <element name="nombreCuenta" nillable="true" type="xsd:string"/>
+     <element name="numeroAcuerdo" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+    <schema elementFormDefault="qualified" targetNamespace="http://pagoFactura.entities.webservices.ct.telecom.com.ar" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://services.webservices.ct.telecom.com.ar" xmlns:intf="http://services.webservices.ct.telecom.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+   <complexType name="PagoFacturaResult">
+    <sequence>
+     <element name="codigoRespuesta" nillable="true" type="xsd:string"/>
+     <element name="mensaje" nillable="true" type="xsd:string"/>
+     <element name="numeroAutorizacion" nillable="true" type="xsd:string"/>
+     <element name="numeroCupon" nillable="true" type="xsd:string"/>
+     <element maxOccurs="unbounded" name="tramites" nillable="true" type="tns5:TramiteCMSWS"/>
+    </sequence>
+   </complexType>
+   <complexType name="TramiteCMSWS">
+    <sequence>
+     <element name="numeroTramite" nillable="true" type="xsd:string"/>
+     <element name="tipoTramite" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+    <schema elementFormDefault="qualified" targetNamespace="http://consultaFacturasDuc.entities.webservices.ct.telecom.com.ar" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://services.webservices.ct.telecom.com.ar" xmlns:intf="http://services.webservices.ct.telecom.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+   <complexType name="ConsultaFacturasDUCResult">
+    <sequence>
+     <element name="codigoRespuesta" nillable="true" type="xsd:string"/>
+     <element name="idSession" nillable="true" type="xsd:string"/>
+     <element name="mensaje" nillable="true" type="xsd:string"/>
+     <element maxOccurs="unbounded" name="facturas" nillable="true" type="tns6:FacturaDUCWS"/>
+    </sequence>
+   </complexType>
+   <complexType name="FacturaDUCWS">
+    <sequence>
+     <element name="descripcionEstadoDUC" nillable="true" type="xsd:string"/>
+     <element name="descripcionTipoDUC" nillable="true" type="xsd:string"/>
+     <element name="idDocumento" nillable="true" type="xsd:string"/>
+     <element name="numeroFacturaDUC" nillable="true" type="xsd:string"/>
+     <element name="vencimientoFactura" nillable="true" type="xsd:string"/>
+     <element name="importe" type="xsd:double"/>
+    </sequence>
+   </complexType>
+  </schema>
+  </wsdl:types>
+  <wsdl:message name="consultaClienteRequest">
+    <wsdl:part element="impl:consultaCliente" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="consultaFacturasDUCRequest">
+    <wsdl:part element="impl:consultaFacturasDUC" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="consultaFacturasDEIMONRequest">
+    <wsdl:part element="impl:consultaFacturasDEIMON" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="pagoFacturaResponse">
+    <wsdl:part element="impl:pagoFacturaResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="consultaClienteResponse">
+    <wsdl:part element="impl:consultaClienteResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="consultaFacturasMICResponse">
+    <wsdl:part element="impl:consultaFacturasMICResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="consultaFacturasDUCResponse">
+    <wsdl:part element="impl:consultaFacturasDUCResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="consultaFacturasMICRequest">
+    <wsdl:part element="impl:consultaFacturasMIC" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="consultaFacturasDEIMONResponse">
+    <wsdl:part element="impl:consultaFacturasDEIMONResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="pagoFacturaRequest">
+    <wsdl:part element="impl:pagoFactura" name="parameters"/>
+  </wsdl:message>
+  <wsdl:portType name="CobranzaTarjeta">
+    <wsdl:operation name="consultaFacturasMIC">
+      <wsdl:input message="impl:consultaFacturasMICRequest" name="consultaFacturasMICRequest"/>
+      <wsdl:output message="impl:consultaFacturasMICResponse" name="consultaFacturasMICResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="consultaFacturasDEIMON">
+      <wsdl:input message="impl:consultaFacturasDEIMONRequest" name="consultaFacturasDEIMONRequest"/>
+      <wsdl:output message="impl:consultaFacturasDEIMONResponse" name="consultaFacturasDEIMONResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="consultaCliente">
+      <wsdl:input message="impl:consultaClienteRequest" name="consultaClienteRequest"/>
+      <wsdl:output message="impl:consultaClienteResponse" name="consultaClienteResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="pagoFactura">
+      <wsdl:input message="impl:pagoFacturaRequest" name="pagoFacturaRequest"/>
+      <wsdl:output message="impl:pagoFacturaResponse" name="pagoFacturaResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="consultaFacturasDUC">
+      <wsdl:input message="impl:consultaFacturasDUCRequest" name="consultaFacturasDUCRequest"/>
+      <wsdl:output message="impl:consultaFacturasDUCResponse" name="consultaFacturasDUCResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CobranzaTarjetaSoapBinding" type="impl:CobranzaTarjeta">
+    <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="consultaFacturasMIC">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="consultaFacturasMICRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="consultaFacturasMICResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consultaFacturasDEIMON">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="consultaFacturasDEIMONRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="consultaFacturasDEIMONResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consultaCliente">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="consultaClienteRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="consultaClienteResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="pagoFactura">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="pagoFacturaRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="pagoFacturaResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consultaFacturasDUC">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="consultaFacturasDUCRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="consultaFacturasDUCResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CobranzaTarjetaService">
+    <wsdl:port binding="impl:CobranzaTarjetaSoapBinding" name="CobranzaTarjeta">
+      <wsdlsoap:address location="http://10.249.40.28:9080/CTWebServices/services/CobranzaTarjeta"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
