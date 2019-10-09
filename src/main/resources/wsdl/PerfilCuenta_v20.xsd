@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Created with Liquid XML Studio 1.0.8.0 (http://www.liquid-technologies.com) -->
+<xs:schema xmlns:com="http://www.personal.com.ar/Common" xmlns="http://www.personal.com.ar/Common/Entities/Cliente/PerfilCuenta/v2.0" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.personal.com.ar/Common/Entities/Cliente/PerfilCuenta/v2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="Diccionario.xsd" namespace="http://www.personal.com.ar/Common" />
+  <xs:element name="marcaFacturable" type="xs:boolean">
+    <xs:annotation>
+      <xs:documentation>Marca que indica si la cuenta es o no facturable.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="PerfilCuentaType">
+    <xs:sequence>
+      <xs:element ref="marcaFacturable" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CuentaNoFacturableType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="PerfilCuentaType" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="fechaUltimaFactura" type="com:fechaHora">
+    <xs:annotation>
+      <xs:documentation>Fecha de la última factura</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="marcaResponsableDePago" type="xs:boolean">
+    <xs:annotation>
+      <xs:documentation>Marca que indica si la cuenta es o no responsable de pago</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="CuentaFacturableType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="PerfilCuentaType">
+        <xs:sequence>
+          <xs:element ref="fechaUltimaFactura" />
+          <xs:element ref="marcaResponsableDePago" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="CuentaNoResponsableType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="CuentaFacturableType" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="balanceCuenta" type="com:Monto_4_decimales_neg">
+    <xs:annotation>
+      <xs:documentation>Balance de la cuenta. Suma la totalidad de la deuda vencida y no vencida</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="cantidadCiclosStopDebit" type="com:entero">
+    <xs:annotation>
+      <xs:documentation>Cantidad de ciclos en StopDebit</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="diasGracia" type="com:entero">
+    <xs:annotation>
+      <xs:documentation>Días de gracia otorgados al cliente para el pago de su deuda.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="fechaStopDebitDesde" type="com:fechaHora">
+    <xs:annotation>
+      <xs:documentation>Fecha desde de stop debit</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="fechaStopDebitHasta" type="com:fechaHora">
+    <xs:annotation>
+      <xs:documentation>Fecha hasta de stop debit</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="codFormaPago">
+    <xs:annotation>
+      <xs:documentation>Codigo forma de pago</xs:documentation>
+    </xs:annotation>
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:enumeration value="EFE">
+          <xs:annotation>
+            <xs:documentation>Efectivo</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="DAU">
+          <xs:annotation>
+            <xs:documentation>Débito automático</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="DTO">
+          <xs:annotation>
+            <xs:documentation>Débito directo</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="descripcionFormaPago" type="xs:string" />
+  <xs:element name="saldoVencidoCuenta" type="com:Monto_4_decimales_neg">
+    <xs:annotation>
+      <xs:documentation>Saldo vencido de la cuenta.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="saldoNoVencidoCuenta" type="com:Monto_4_decimales_neg">
+    <xs:annotation>
+      <xs:documentation>Saldo no vencido de la cuenta</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="marcaStopdebit" type="xs:boolean" />
+  <xs:complexType name="CuentaResponsableType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="CuentaFacturableType">
+        <xs:sequence>
+          <xs:element ref="balanceCuenta" />
+          <xs:element ref="cantidadCiclosStopDebit" />
+          <xs:element ref="diasGracia" />
+          <xs:element ref="marcaStopdebit" />
+          <xs:element ref="fechaStopDebitDesde" />
+          <xs:element ref="fechaStopDebitHasta" />
+          <xs:element ref="codFormaPago" />
+          <xs:element ref="saldoVencidoCuenta" />
+          <xs:element ref="saldoNoVencidoCuenta" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="codMarcaEnCtaResp">
+    <xs:annotation>
+      <xs:documentation>Marcas que están sobre el Responsable de la Cuenta</xs:documentation>
+    </xs:annotation>
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:enumeration value="NO_CORTE_MORA">
+          <xs:annotation>
+            <xs:documentation>No corte x mora</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="NO_REHAB_MORA">
+          <xs:annotation>
+            <xs:documentation>No rehab x mora</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="NO_IVR_MORA">
+          <xs:annotation>
+            <xs:documentation>No IVR x mora</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="NO_SMS_MORA">
+          <xs:annotation>
+            <xs:documentation>No SMS x mora</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="NO_INTERES">
+          <xs:annotation>
+            <xs:documentation>No interés</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="NO_REHAB_LIMCRED">
+          <xs:annotation>
+            <xs:documentation>No rehab x lim cred</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="NO_CORTE_LIMCRED">
+          <xs:annotation>
+            <xs:documentation>No corte x lim cred</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="NO_IVR_LIMCRED">
+          <xs:annotation>
+            <xs:documentation>No IVR x lim cred</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="NO_SMS_LIMCRED">
+          <xs:annotation>
+            <xs:documentation>No SMS x lim cred</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="DIAS_GRACIA">
+          <xs:annotation>
+            <xs:documentation>Días de gracia</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="GRAN_CUENTA">
+          <xs:annotation>
+            <xs:documentation>Gran cuenta</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="DIAS_VTO_FACTURA">
+          <xs:annotation>
+            <xs:documentation>Días Adicionales para cálculo de fecha de vencimiento diferencial para clientes puntuales</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="AMPLIACION_LIM_CRED">
+          <xs:annotation>
+            <xs:documentation>Marca de ampliación de límite de crédito</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="fechaDesdeMarcaEnCtaResp" type="com:fechaHora">
+    <xs:annotation>
+      <xs:documentation>Fecha de validez desde, de la Marca sobre la Cuenta Responsable</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="fechaHastaMarcaEnCtaResp" type="com:fechaHora">
+    <xs:annotation>
+      <xs:documentation>Fecha de validez hasta, de la Marca sobre la Cuenta Responsable</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="marcaEnCtaResp" type="xs:boolean">
+    <xs:annotation>
+      <xs:documentation>Indica si la marca está prendida o apagada</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="descripcionMarcaEnCtaResp" type="xs:string" />
+  <xs:element name="motivoMarcaEnCtaResp" type="xs:string" />
+  <xs:complexType name="MarcaEnCuentaResponsableType">
+    <xs:sequence>
+      <xs:element ref="codMarcaEnCtaResp" />
+      <xs:element ref="descripcionMarcaEnCtaResp" />
+      <xs:element ref="fechaHastaMarcaEnCtaResp" />
+      <xs:element ref="fechaDesdeMarcaEnCtaResp" />
+      <xs:element ref="marcaEnCtaResp" />
+      <xs:element ref="motivoMarcaEnCtaResp" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="marcaMorosidad" type="xs:boolean">
+    <xs:annotation>
+      <xs:documentation>Marca de morosidad</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="CuentaEstadoMorosidadType">
+    <xs:sequence>
+      <xs:element ref="marcaMorosidad" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CuentaNoMorosaType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="CuentaEstadoMorosidadType" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="fechaMorosidad" type="com:fechaHora">
+    <xs:annotation>
+      <xs:documentation>
+Fecha en que entró el cliente en morosidad
+</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="montoDeudaInicial" type="com:Monto_4_decimales_neg">
+    <xs:annotation>
+      <xs:documentation>Monto de deuda inicial</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="montoInteresDeudaInicial" type="com:Monto_4_decimales_neg">
+    <xs:annotation>
+      <xs:documentation>Monto del interés de la deuda inicial.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="montoTotalDeudaInicial" type="com:Monto_4_decimales_neg">
+    <xs:annotation>
+      <xs:documentation>montoDeudaInicial + montoInteresDeudaInicial</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="fechaDesinterrupcionProcMora" type="com:fechaHora">
+    <xs:annotation>
+      <xs:documentation>Fecha de desinterrupción del proceso de Mora</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="fechaFinInterrupcionProcMora" type="com:fechaHora">
+    <xs:annotation>
+      <xs:documentation>Fecha fin de la interrupción del proceso de mora</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="fechaInicioInterrupcionProcMora" type="com:fechaHora">
+    <xs:annotation>
+      <xs:documentation>Fecha de inicio de la interrupción del proceso de mora</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="motivoDesinterrupcionProcMora" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Motivo de la desinterrupción del proceso de mora</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="motivoInterrupcionProcMora" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Motivo de interrupción del proceso de mora</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="fechaFinMorosidad" type="com:fechaHora" />
+  <xs:element name="estadoMorosidad">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:enumeration value="A">
+          <xs:annotation>
+            <xs:documentation>Activo</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="S">
+          <xs:annotation>
+            <xs:documentation>Suspendido</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="C">
+          <xs:annotation>
+            <xs:documentation>Cerrado</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="motivoCierreProcMora" type="xs:string" />
+  <xs:complexType name="CuentaMorosaType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="CuentaEstadoMorosidadType">
+        <xs:sequence>
+          <xs:element ref="fechaMorosidad" />
+          <xs:element ref="montoDeudaInicial" />
+          <xs:element ref="montoInteresDeudaInicial" />
+          <xs:element ref="montoTotalDeudaInicial" />
+          <xs:element ref="fechaDesinterrupcionProcMora" />
+          <xs:element ref="fechaFinInterrupcionProcMora" />
+          <xs:element ref="fechaInicioInterrupcionProcMora" />
+          <xs:element ref="motivoDesinterrupcionProcMora" />
+          <xs:element ref="motivoInterrupcionProcMora" />
+          <xs:element ref="fechaFinMorosidad" />
+          <xs:element ref="estadoMorosidad" />
+          <xs:element ref="motivoCierreProcMora" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="marcaCargoTardio" type="xs:boolean">
+    <xs:annotation>
+      <xs:documentation>Marca que indica si la cuenta acepta aplicar o no cargos tardios: LateFeeChargeable</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="marcaControlLimite" type="xs:boolean">
+    <xs:annotation>
+      <xs:documentation>Marca que indica si la cuenta sera controlada por Limite de credito o limite de uso</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="claseCuenta" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Clasificacion de cta distinta a tipoCuenta. Huawei se usara para AcctType= payment o billing account / BSCS se maneja por los flags marcaFacturable y marcaResponsableDePago</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+</xs:schema>

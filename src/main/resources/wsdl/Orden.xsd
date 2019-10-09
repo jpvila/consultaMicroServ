@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Created with Liquid XML Studio 1.0.8.0 (http://www.liquid-technologies.com) -->
+<xs:schema xmlns:com="http://www.personal.com.ar/Common" xmlns:tns="http://www.personal.com.ar/Common/Entities/NegocioComun/Orden/v1.0" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.personal.com.ar/Common/Entities/NegocioComun/Orden/v1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="Diccionario.xsd" namespace="http://www.personal.com.ar/Common" />
+  <xs:element name="codOrden" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Código de la órden genérica. Orden, request en el SID, es la entidad padre de OrdenCliente, OrdenProducto, OrdenServicio</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="nroOrden" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Número de la órden genérica. Generalmente es el dato conocido por el cliente, proveedor o partner</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="fechaAltaOrden" type="com:fechaHora">
+    <xs:annotation>
+      <xs:documentation>Fecha de alta de la Orden</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="fechaModificacionOrden" type="com:fechaHora">
+    <xs:annotation>
+      <xs:documentation>Fecha de modificación de la Orden</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="estadoOrden" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Estado de la órden. Es una short description unívoca del código</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="codEstadoOrden" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Código del estado de la órden</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="descripcionEstadoOrden" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Descripción del estado de la órden</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="codTipoOrden" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Código del tipo de orden</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="tipoOrden" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Tipo de orden. Es una short description unívoca del tipo de orden</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="descripcionTipoOrden" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Descripción del tipo de orden</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="codItem" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Código de ítem</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="ejecucionCambio" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Dentro de una Solicitud de Cambio, especifica el momento en que se ejecutara el cambio. Por ej: inmediatamente, en proximo ciclo, en una fecha determinada, etc</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+   <xs:element name="fechaEjecucionCambio" type="com:fechaHora">
+    <xs:annotation>
+      <xs:documentation>Dentro de una Solicitud de Cambio, cuando la ejecucionCambio es una fecha, este atributo especifica la fecha que se pacta para la ejecucion del cambio</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+</xs:schema>

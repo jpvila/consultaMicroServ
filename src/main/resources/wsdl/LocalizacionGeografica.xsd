@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<xs:schema xmlns:com="http://www.personal.com.ar/Common" xmlns:tns="http://www.personal.com.ar/Common/Entities/NegocioComun/LocalizacionGeografica/v1.0" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.personal.com.ar/Common/Entities/NegocioComun/LocalizacionGeografica/v1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="Diccionario.xsd" namespace="http://www.personal.com.ar/Common" />
+  <xs:element name="codigoPostal">
+    <xs:annotation>
+      <xs:documentation>Código Postal (####,A####AAA,A####)</xs:documentation>
+    </xs:annotation>
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:pattern value="([0-9]{4}|[A-Z]{1}[0-9]{4}[A-Z]{3}|[A-Z]{1}[0-9]{4}){0,1}" />
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="calle" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Calle de la dirección</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="altura" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Numero de la dirección</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="piso" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Piso</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="departamento" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Departamento</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="CGI" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>
+        CGI asociado a la zona.
+        GSM Cell Global Id (i.e. CGI = MCC_MNC_LAC_CI)
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="pais" type="tns:PaisType">
+    <xs:annotation>
+      <xs:documentation>Pais</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="provincia" type="tns:ProvinciaType">
+    <xs:annotation>
+      <xs:documentation>Provincia</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="localidad" type="tns:LocalidadType">
+    <xs:annotation>
+      <xs:documentation>Localidad</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="codGeografico" type="xs:string" />
+  <xs:element name="nombreLocalizacionGeo" type="xs:string" />
+  <xs:element name="descripcionLocalizacionGeo" type="xs:string" />
+
+  <xs:element name="direccion" type="tns:DireccionType">
+    <xs:annotation>
+      <xs:documentation>Datos de la direccion</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="tipoLocalizacionGeo">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:enumeration value="AREA">
+          <xs:annotation>
+            <xs:documentation>Área</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="PROVINCIA">
+          <xs:annotation>
+            <xs:documentation>Provincia</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="PAIS">
+          <xs:annotation>
+            <xs:documentation>País</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="LOCALIDAD">
+          <xs:annotation>
+            <xs:documentation>Localidad</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="ZONA">
+          <xs:annotation>
+            <xs:documentation>Zona</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="JURISDICCION">
+          <xs:annotation>
+            <xs:documentation>Jurisdicción</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+
+  <xs:complexType name="LocalizacionGeograficaType">
+    <xs:sequence>
+      <xs:element ref="tns:codGeografico"/>
+      <xs:element ref="tns:nombreLocalizacionGeo"/>
+      <xs:element ref="tns:descripcionLocalizacionGeo"/>
+      <xs:element ref="tns:tipoLocalizacionGeo"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:element name="codJurisdiccion" type="xs:string"/>
+  <xs:element name="descripcionJurisdiccion" type="xs:string"/>
+
+  <xs:complexType name="JurisdiccionType">
+    <xs:sequence>
+      <xs:element ref="tns:codJurisdiccion"/>
+      <xs:element ref="tns:descripcionJurisdiccion"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:element name="codPais" type="xs:string"/>
+  <xs:element name="descripcionPais" type="xs:string"/>
+
+  <xs:complexType name="PaisType">
+    <xs:sequence>
+      <xs:element ref="tns:codPais"/>
+      <xs:element ref="tns:descripcionPais"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:element name="codArea">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:enumeration value="GENERAL"/>
+        <xs:enumeration value="AMBA"/>
+        <xs:enumeration value="NORTE"/>
+        <xs:enumeration value="SUR"/>
+        <xs:enumeration value="URUGUAY"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+
+  <xs:element name="descripcionArea" type="xs:string"/>
+
+  <xs:complexType name="AreaType">
+    <xs:sequence>
+      <xs:element ref="tns:codArea"/>
+      <xs:element ref="tns:descripcionArea"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:element name="codAreaDeServicio" type="xs:string"/>
+  <xs:element name="NPA" type="xs:string"/>
+  <xs:element name="descripcionAreaDeServicio" type="xs:string"/>
+
+  <xs:complexType name="AreaDeServicioType">
+    <xs:sequence>
+      <xs:element ref="tns:codAreaDeServicio"/>
+      <xs:element ref="tns:NPA"/>
+      <xs:element ref="tns:descripcionAreaDeServicio"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:element name="codProvincia">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:enumeration value="B">
+          <xs:annotation>
+            <xs:documentation>Bs as</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>        
+        <xs:enumeration value="X">
+          <xs:annotation>
+            <xs:documentation>Cba</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="S">
+          <xs:annotation>
+            <xs:documentation>Sta Fe</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="M">
+          <xs:annotation>
+            <xs:documentation>Mza</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="T">
+          <xs:annotation>
+            <xs:documentation>Tucumán</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="E">
+          <xs:annotation>
+            <xs:documentation>E. Ríos</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="A">
+          <xs:annotation>
+            <xs:documentation>Salta</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="N">
+          <xs:annotation>
+            <xs:documentation>Misiones</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="H">
+          <xs:annotation>
+            <xs:documentation>Chaco</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="W">
+          <xs:annotation>
+            <xs:documentation>Ctes.</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="G">
+          <xs:annotation>
+            <xs:documentation>Sgo Del Estero</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="Y">
+          <xs:annotation>
+            <xs:documentation>Jujuy</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="J">
+          <xs:annotation>
+            <xs:documentation>San Juan</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="R">
+          <xs:annotation>
+            <xs:documentation>Río Negro</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="P">
+          <xs:annotation>
+            <xs:documentation>Formosa</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="Q">
+          <xs:annotation>
+            <xs:documentation>Neuquén</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="U">
+          <xs:annotation>
+            <xs:documentation>Chubut</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="D">
+          <xs:annotation>
+            <xs:documentation>S Luis</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="K">
+          <xs:annotation>
+            <xs:documentation>Catamarca</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="F">
+          <xs:annotation>
+            <xs:documentation>La Rioja</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="L">
+          <xs:annotation>
+            <xs:documentation>La Pampa</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="Z">
+          <xs:annotation>
+            <xs:documentation>Sta Cruz</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="V">
+          <xs:annotation>
+            <xs:documentation>Tierra Del Fuego</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="C">
+          <xs:annotation>
+            <xs:documentation>Cdad. de Bs.As.</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="descripcionProvincia" type="xs:string"/>
+
+  <xs:complexType name="ProvinciaType">
+    <xs:sequence>
+      <xs:element ref="tns:codProvincia"/>
+      <xs:element ref="tns:descripcionProvincia"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:element name="codLocalidad" type="xs:string"/>
+  <xs:element name="codPostal" type="xs:string"/>
+  <xs:element name="descripcionLocalidad" type="xs:string"/>
+
+  <xs:complexType name="LocalidadType">
+    <xs:sequence>
+      <xs:element ref="tns:codLocalidad"/>
+      <xs:element ref="tns:codPostal"/>
+      <xs:element ref="tns:descripcionLocalidad"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:element name="codZona" type="xs:string"/>
+  <xs:element name="descripcionZona" type="xs:string"/>
+
+  <xs:complexType name="ZonaType">
+    <xs:sequence>
+      <xs:element ref="tns:codZona" />
+      <xs:element ref="tns:descripcionZona" />
+      <xs:element ref="tns:CGI" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:element name="barrio" type="xs:string"/>
+
+  <xs:element name="codPartido" type="xs:string"/>
+  <xs:element name="descripcionPartido" type="xs:string"/>
+  <xs:element name="alturaInicial" type="xs:string"/>
+  <xs:element name="alturaFinal" type="xs:string"/>
+
+  <xs:complexType name="DireccionType">
+    <xs:annotation>
+      <xs:documentation>Datos de una dirección</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element ref="tns:pais" />
+      <xs:element ref="tns:localidad" />
+      <xs:element ref="tns:provincia" />
+      <xs:element ref="tns:calle" />
+      <xs:element ref="tns:altura" />
+      <xs:element ref="tns:piso" />
+      <xs:element ref="tns:departamento" />
+      <xs:element ref="tns:barrio" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:element name="tipoDireccion" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Indica el tipo de dirección: particular, laboral, familiar, legal, etc</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="coordenadaX" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Coordenada X de una dirección dada. Permite la georeferenciación</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="coordenadaY" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Coordenada Y de una dirección dada. Permite la georeferenciación</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="codMunicipio" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Agregado 29-Ago-17. Codigo de la municipalidad o municipio</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+      <xs:element name="resultadoNormalizacion" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Agregado 24-Nov-17. Resúmen del resultado de la normalización</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+   <xs:element name="detalleNormalizacion" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Agregado 24-Nov-17. Detalla el motivo por el que no se puedo normalizar, o si se normalizó bien.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+   <xs:element name="diferenciaNormalizacion" type="com:decimal_4_decimales">
+    <xs:annotation>
+      <xs:documentation>Agregado 24-Nov-17. Indica cuan distinto es el nombre de la calle informada por MDW respecto del  nombre de la calle encontrada en Merlin. Cero es exacto</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+</xs:schema>

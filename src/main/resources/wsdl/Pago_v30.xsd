@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Created with Liquid XML Studio 1.0.8.0 (http://www.liquid-technologies.com) -->
+<xs:schema xmlns:fin="http://www.personal.com.ar/Common/Entities/NegocioComun/EntidadFinanciera/v1.0" xmlns:cob="http://www.personal.com.ar/Common/Entities/Ventas/CanalDeCobranza/v1.0" xmlns:cvt="http://www.personal.com.ar/Common/Entities/Ventas/CanalDeVentas/v1.0" xmlns:pfl="http://www.personal.com.ar/Common/Entities/Cliente/PerfilCuenta/v2.0" xmlns:tns="http://www.personal.com.ar/Common/Entities/Cliente/Pago/v3.0" xmlns:mon="http://www.personal.com.ar/Common/Entities/NegocioComun/Moneda/v1.0" xmlns:com="http://www.personal.com.ar/Common" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.personal.com.ar/Common/Entities/Cliente/Pago/v3.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="Diccionario.xsd" namespace="http://www.personal.com.ar/Common" />
+  <xs:import schemaLocation="Moneda.xsd" namespace="http://www.personal.com.ar/Common/Entities/NegocioComun/Moneda/v1.0" />
+  <xs:import schemaLocation="CanalDeVentas.xsd" namespace="http://www.personal.com.ar/Common/Entities/Ventas/CanalDeVentas/v1.0" />
+  <xs:import schemaLocation="EntidadFinanciera.xsd" namespace="http://www.personal.com.ar/Common/Entities/NegocioComun/EntidadFinanciera/v1.0" />
+  <xs:import schemaLocation="CanalDeCobranza.xsd" namespace="http://www.personal.com.ar/Common/Entities/Ventas/CanalDeCobranza/v1.0" />
+  <xs:import schemaLocation="PerfilCuenta_v20.xsd" namespace="http://www.personal.com.ar/Common/Entities/Cliente/PerfilCuenta/v2.0" />
+  <xs:element name="codPago" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Código del Pago. Número de identificación</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="codAjustePago">
+    <xs:annotation>
+      <xs:documentation>Código de ajuste que efectuó el banco.</xs:documentation>
+    </xs:annotation>
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:enumeration value="NORMAL">
+          <xs:annotation>
+            <xs:documentation>Pago Corregido</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="CORREGIDO">
+          <xs:annotation>
+            <xs:documentation>Pago Corregido</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="ANTERIOR">
+          <xs:annotation>
+            <xs:documentation>Pago de partida anterior</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="OTROS">
+          <xs:annotation>
+            <xs:documentation>Otros</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="codProcesamientoPago" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Código de ajuste que efectuó el banco.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="comentarioPago" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Información adicional sobre el pago</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="fechaAnulacion" type="com:fechaHora">
+    <xs:annotation>
+      <xs:documentation>Fecha de anulación, en caso que el pago se anule</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="fechaAplicacionPago" type="com:fechaHora">
+    <xs:annotation>
+      <xs:documentation>Fecha en que el pago se aplicó efectivamente</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="fechaCambioEstadoPago" type="com:fechaHora">
+    <xs:annotation>
+      <xs:documentation>Fecha ATM, de anulación, modificación o transferencia.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="fechaLecturaPago" type="com:fechaHora">
+    <xs:annotation>
+      <xs:documentation>Fecha de lectura de cupón GIRE o fecha de la partida a la que pertenece el pago</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="fechaPago" type="com:fechaHora">
+    <xs:annotation>
+      <xs:documentation>Fecha Valor</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="fechaPresentacion" type="com:fechaHora">
+    <xs:annotation>
+      <xs:documentation>Fecha en que la entidad presenta el pago a TPA.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="fechaRegistroPago" type="com:fechaHora">
+    <xs:annotation>
+      <xs:documentation>Fecha en la que se procesó el registro por primera vez</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="fechaValidacionPago" type="com:fechaHora">
+    <xs:annotation>
+      <xs:documentation>Fecha en que se validó el pago</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="fechaVencimientoPago" type="com:fechaHora">
+    <xs:annotation>
+      <xs:documentation>Fecha de vencimiento del talón de la factura</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="importePago" type="com:Monto_4_decimales">
+    <xs:annotation>
+      <xs:documentation>Importe pagado</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="importeComisionPago" type="com:Monto_4_decimales">
+    <xs:annotation>
+      <xs:documentation>Importe pagado</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="marcaCargoEnFactura" type="xs:boolean">
+    <xs:annotation>
+      <xs:documentation>Marca que indica si el cargo se imputará en la próxima factura de tráfico</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="montoValidadoPago" type="com:Monto_4_decimales">
+    <xs:annotation>
+      <xs:documentation>Monto validado en la fecha de validación</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:simpleType name="motivoCambioEstadoPagoType">
+    <xs:restriction base="xs:string" />
+  </xs:simpleType>
+  <xs:element name="descripcionMotivoCambioEstadoPago" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Descripcion del motivo</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="motivoPago" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Motivo de pgo</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="nombreArchivoPagoRecibido" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Nombre del archivo de pago que se recibió</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="nroSecuencialPago" type="com:entero">
+    <xs:annotation>
+      <xs:documentation>Número secuencial histórico del pago</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="tipoLectura">
+    <xs:annotation>
+      <xs:documentation>Tipo de Lectura. Puede ser Manual o Automática</xs:documentation>
+    </xs:annotation>
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:pattern value="Automatica|Manual" />
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="tipoTalon">
+    <xs:annotation>
+      <xs:documentation>Tipo de Talón</xs:documentation>
+    </xs:annotation>
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:pattern value="Abierto|Cerrado" />
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="tipoTransaccionPago">
+    <xs:annotation>
+      <xs:documentation>Indica si el pago es batch u on-line.</xs:documentation>
+    </xs:annotation>
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:pattern value="Batch|OnLine" />
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:simpleType name="estadoPagoType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ANU">
+        <xs:annotation>
+          <xs:documentation>Anulado</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="MOD">
+        <xs:annotation>
+          <xs:documentation>Modificado</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="TRN">
+        <xs:annotation>
+          <xs:documentation>Transferido</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="IMP">
+        <xs:annotation>
+          <xs:documentation>Imputado</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="PEN">
+        <xs:annotation>
+          <xs:documentation>Pendiente de imputación</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ERR">
+        <xs:annotation>
+          <xs:documentation>Pago fallido. Payment failed</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:length value="3" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="numeroBancoDePago">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="fin:codBanco" />
+        <xs:element ref="fin:codSucursalBanco" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="oficinaComercialDePago" type="cvt:OficinaComercialType" />
+  <xs:element name="lugarPago" nillable="true">
+    <xs:annotation>
+      <xs:documentation>Lugar donde se efectuó el pago</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="1">
+        <xs:element ref="tns:oficinaComercialDePago" />
+        <xs:element ref="tns:numeroBancoDePago" />
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="bancoConcentrador" type="fin:BancoType" />
+  <xs:element name="pagoFacil" type="fin:PagoFacilType" />
+  <xs:element name="GIRE" type="fin:GireType" />
+  <xs:element name="enteConcentrador" nillable="true">
+    <xs:annotation>
+      <xs:documentation>Ente concentrador del pago. Existe solamente si se trata de un pago BATCH</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="1">
+        <xs:element ref="tns:bancoConcentrador" />
+        <xs:element ref="tns:pagoFacil" />
+        <xs:element ref="tns:GIRE" />
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="motivoCambioEstadoPago" type="tns:motivoCambioEstadoPagoType" />
+  <xs:element name="cuentaAsociadaPago" type="pfl:CuentaResponsableType" />
+  <xs:element name="estadoPago" type="tns:estadoPagoType" />
+  <xs:element name="moneda" type="mon:MonedaType" />
+  <xs:element name="codErrorPago" type="xs:string" />
+  <xs:element name="descripcionErrorPago" type="xs:string" />
+  <xs:element name="descripcionEstadoPago" type="xs:string" />
+  <xs:complexType name="PagoType">
+    <xs:sequence>
+      <xs:element ref="tns:cuentaAsociadaPago" />
+      <xs:element ref="tns:codAjustePago" />
+      <xs:element ref="tns:codPago" />
+      <xs:element ref="tns:codProcesamientoPago" />
+      <xs:element ref="tns:comentarioPago" />
+      <xs:element ref="tns:estadoPago" />
+      <xs:element ref="tns:fechaAplicacionPago" />
+      <xs:element ref="tns:fechaCambioEstadoPago" />
+      <xs:element ref="tns:fechaLecturaPago" />
+      <xs:element ref="tns:fechaPago" />
+      <xs:element ref="tns:fechaPresentacion" />
+      <xs:element ref="tns:fechaRegistroPago" />
+      <xs:element ref="tns:fechaValidacionPago" />
+      <xs:element ref="tns:fechaVencimientoPago" />
+      <xs:element ref="tns:importeComisionPago" />
+      <xs:element ref="tns:importePago" />
+      <xs:element ref="tns:lugarPago" />
+      <xs:element ref="tns:marcaCargoEnFactura" />
+      <xs:element ref="tns:montoValidadoPago" />
+      <xs:element ref="tns:motivoCambioEstadoPago" />
+      <xs:element ref="tns:motivoPago" />
+      <xs:element ref="tns:nombreArchivoPagoRecibido" />
+      <xs:element ref="tns:nroSecuencialPago" />
+      <xs:element ref="tns:tipoLectura" />
+      <xs:element ref="tns:tipoTalon" />
+      <xs:element ref="tns:tipoTransaccionPago" />
+      <xs:element ref="tns:enteConcentrador">
+        <xs:annotation>
+          <xs:documentation>Ente recaudador que debe ser informado en el caso de que el tipo de transacción del pago sea BATCH</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="tns:moneda" />
+      <xs:element ref="cob:codCanalCobranza" />
+      <xs:element ref="tns:descripcionEstadoPago" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PagoErroneoType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:PagoType">
+        <xs:sequence>
+          <xs:element ref="tns:codErrorPago" />
+          <xs:element ref="tns:descripcionErrorPago" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="nroLineaPagoIVR" type="xs:string" />
+  <xs:element name="codReintegro" type="xs:string" />
+  <xs:element name="fechaValorReintegro" type="com:fecha" />
+  <xs:element name="montoReintegro" type="com:Monto_4_decimales" />
+  <xs:element name="codAjusteFinanciero" type="xs:string" />
+  <xs:element name="importeAjusteFinanciero" type="com:Monto_4_decimales" />
+  <xs:element name="estadoAjusteFinanciero">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:enumeration value="P">
+          <xs:annotation>
+            <xs:documentation>Pago</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="I">
+          <xs:annotation>
+            <xs:documentation>Impago</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:complexType name="AjusteFinancieroType">
+    <xs:sequence>
+      <xs:element ref="tns:codAjusteFinanciero" />
+      <xs:element ref="tns:importeAjusteFinanciero" />
+      <xs:element ref="tns:estadoAjusteFinanciero" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="nroReferenciaPago" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Numero de referencia de pago. Es el nro que usa el cliente para poder efectuar el pago; podria coincidir con el codCuenta o no. Gralmente se imprime en el Comprobante Factura o de Pago</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="tipoDeposito" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Agregado 4-Sep-2017. Tipo de deposito. DepositType</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="marcaPagoRevertido" type="xs:boolean">
+    <xs:annotation>
+      <xs:documentation>Agregado 5-Sep-2017. Marca que indica si es una reversion de pago o no. IsPaymentReversal</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="fechaPagoRevertido" type="com:fechaHora">
+    <xs:annotation>
+      <xs:documentation>Agregado 5-Sep-2017. Fecha en la cual el pago fue revertido. ReversalDate</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+</xs:schema>

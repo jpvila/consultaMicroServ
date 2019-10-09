@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<xs:schema xmlns:com="http://www.personal.com.ar/Common" xmlns:tns="http://www.personal.com.ar/Common/Entities/Ventas/CanalDeVentas/v1.0" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.personal.com.ar/Common/Entities/Ventas/CanalDeVentas/v1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+ <xs:import schemaLocation="Diccionario.xsd" namespace="http://www.personal.com.ar/Common" />
+
+
+  <xs:element name="codOficinaComercial" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Código de la oficina comercial.</xs:documentation>
+    </xs:annotation>    
+  </xs:element>
+  
+  <xs:element name="descripcionOficinaComercial" nillable="true" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Descripción de la oficina comercial</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  
+  <xs:complexType name="CanalVentasType">    
+  </xs:complexType>
+
+  <xs:complexType name="OficinaComercialType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:CanalVentasType">
+        <xs:sequence>
+          <xs:element ref="tns:codOficinaComercial"/>
+          <xs:element ref="tns:descripcionOficinaComercial"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="estadoCaja">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:enumeration value="ABIERTA"/>
+        <xs:enumeration value="CERRADA"/>          
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+
+  <xs:element name="codCanalDeVenta">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:enumeration value="VD"/>          
+        <xs:enumeration value="VI"/>
+        <xs:enumeration value="VM"/>
+        <xs:enumeration value="AU"/>       
+		<xs:enumeration value="DI">   
+		<xs:annotation>
+			<xs:documentation>Canal Digital. Agregado 18-10-17</xs:documentation>
+		</xs:annotation>
+		</xs:enumeration>	
+        <xs:enumeration value="EC">		
+		<xs:annotation>
+			<xs:documentation>ECommerce. Agregado 18-10-17</xs:documentation>
+		</xs:annotation>
+		</xs:enumeration>	 
+	  </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+
+  <xs:element name="codCC">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:enumeration value="NORA">
+          <xs:annotation>
+            <xs:documentation>Norte Andina</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="AMBA">
+          <xs:annotation>
+            <xs:documentation>AMBA</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="LITC">
+          <xs:annotation>
+            <xs:documentation>Litoral centro</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="MEDI">
+          <xs:annotation>
+            <xs:documentation>Mediterránea</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="LITN">
+          <xs:annotation>
+            <xs:documentation>Litoral Norte</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="BSAS">
+          <xs:annotation>
+            <xs:documentation>Provincia de Buenos Aires</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="LITS">
+          <xs:annotation>
+            <xs:documentation>Litoral sur</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="CUYO">
+          <xs:annotation>
+            <xs:documentation>Cuyo</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="PATA">
+          <xs:annotation>
+            <xs:documentation>Patagonia</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+
+  <xs:element name="descripcionCC" type="xs:string"/>
+
+  <xs:element name="codPuntoDeVenta" type="xs:string"/>
+  <xs:element name="descripcionPuntoDeVenta" type="xs:string"/>
+  <xs:element name="fechaAltaPuntoDeVenta" type="com:fechaHora"/>
+  <xs:element name="fechaBajaPuntoDeVenta" type="com:fechaHora"/>
+  <xs:element name="fechaSuspensionPuntoDeVenta" type="com:fechaHora"/>
+  <xs:element name="codTipoCanalDeVenta" type="xs:string"/>
+  <xs:element name="codTipoPuntoDeVenta" type="xs:string"/>
+  <xs:element name="descripcionTipoPuntoDeVenta" type="xs:string"/>
+  <xs:element name="fechaSuspensionTipoPuntoDeVenta" type="com:fechaHora"/>
+  <xs:element name="codSubCanalDeVenta" type="xs:string"/>
+  <xs:element name="diasVencimientoRendicion" type="xs:string"/>
+  
+  
+</xs:schema>

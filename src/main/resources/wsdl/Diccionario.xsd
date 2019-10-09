@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- Created with Liquid XML Studio 1.0.8.0 (http://www.liquid-technologies.com) -->
+<xs:schema xmlns:com="http://www.personal.com.ar/Common" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.personal.com.ar/Common" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:simpleType name="Monto_2_decimales">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="([0-9]*.[0-9][0-9]){0,1}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Monto_4_decimales">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="([0-9]*.[0-9][0-9][0-9][0-9]){0,1}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Monto_2_decimales_neg">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="((-)?\d*\.[0-9][0-9]){0,1}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Monto_4_decimales_neg">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="((-)?\d*\.[0-9][0-9][0-9][0-9]){0,1}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="entero_1_digito">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="([0-9]){0,1}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="entero_2_digitos">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="([0-9][0-9]|[0-9]){0,1}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="entero_3_digitos">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="([0-9][0-9][0-9]|[0-9][0-9]|[0-9]){0,1}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="entero">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(-{0,1}\d*){0,1}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="mail">
+		<xs:annotation>
+			<xs:documentation>Dirección de correo electrónico</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="([_a-zA-Z0-9\-]+(\.[_a-zA-Z0-9\-]+)*@[a-zA-Z0-9\-]+(\.[a-zA-Z0-9\-]+)*\.(([0-9]{1,3})|([a-zA-Z]{2,3}))){0,1}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="fechaHora">
+		<xs:annotation>
+			<xs:documentation>Fecha y hora completa, con formato YYYY-MM-DD HH:MM:SS</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="((19|20)\d\d\-(0[1-9]|10|11|12)\-(0[1-9]|1\d|2\d|30|31) (0\d|1\d|2[0-3]):([0-5]\d):([0-5]\d)){0,1}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="fecha">
+		<xs:annotation>
+			<xs:documentation>Fecha, con formato YYYY-MM-DD</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="((19|20)\d\d-(0[1-9]|10|11|12)\-(0[1-9]|1\d|2\d|30|31)){0,1}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="fecha_mesAnio">
+		<xs:annotation>
+			<xs:documentation>Fecha, con formato YYYY-MM</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="((19|20)\d\d-(0[1-9]|10|11|12)){0,1}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="hora">
+		<xs:annotation>
+			<xs:documentation>Hora, con formato HH:MM:SS</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="((0\d|1\d|2[0-3]):([0-5]\d):([0-5]\d)){0,1}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Mes_1_12">
+		<xs:annotation>
+			<xs:documentation>Mes con formato numerico</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(0[1-9]|10|11|12){0,1}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Mes_1_12_Negativo">
+		<xs:annotation>
+			<xs:documentation>Mes con formato numerico, aceptando negativos</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="((0[1-9]|10|11|12)|-(0[1-9]|10|11|12)){0,1}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="idSecuencial" type="xs:integer">
+		<xs:annotation>
+			<xs:documentation>sequence. Datos operacionales </xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="sistemaGestor">
+		<xs:annotation>
+			<xs:documentation>Sistema gestor de cuentas y lineas. Por ejemplo: BRM o BSCS</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:pattern value="(BRM|BSCS){1}"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:simpleType name="decimal_2_decimales_neg">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="((-)?\d*\.[0-9][0-9]){0,1}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="decimal_4_decimales">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="([0-9]*.[0-9][0-9][0-9][0-9]){0,1}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="decimal_4_decimales_neg">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="((-)?\d*\.[0-9][0-9][0-9][0-9]){0,1}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="unidad_ilimitada">
+		<xs:restriction base="xs:string">			
+			<xs:pattern value="(\d+|(Ilimitado)){0,1}"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

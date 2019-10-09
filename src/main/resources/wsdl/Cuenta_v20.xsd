@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Created with Liquid XML Studio 1.0.8.0 (http://www.liquid-technologies.com) -->
+<xs:schema xmlns:com="http://www.personal.com.ar/Common" xmlns:tns="http://www.personal.com.ar/Common/Entities/Cliente/Cuenta/v2.0" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.personal.com.ar/Common/Entities/Cliente/Cuenta/v2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="Diccionario.xsd" namespace="http://www.personal.com.ar/Common" />
+  <xs:element name="codCuenta" type="xs:string" nillable="true">
+    <xs:annotation>
+      <xs:documentation>Identificador unico de la Cuenta</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="estadoCuenta">
+    <xs:annotation>
+      <xs:documentation>Estado de la Cuenta. A es activa, D es desactiva, S es suspendida, B es bloqueada y C es creada pero no activa</xs:documentation>
+    </xs:annotation>
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:maxLength value="1" fixed="true" />
+        <xs:pattern value="(A|D|S|B|C){0,1}" />
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="codEjecutivoCuenta" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Código del Ejecutivo Telecom asignado a la cuenta</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="fechaAltaCuenta" type="com:fechaHora">
+    <xs:annotation>
+      <xs:documentation>Fecha de alta de la cuenta</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="fechaEstadoCuenta" type="com:fechaHora">
+    <xs:annotation>
+      <xs:documentation>Fecha en que se produjo el último cambio de estado de la cuenta</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="marcaGestionHabilitada" type="xs:boolean">
+    <xs:annotation>
+      <xs:documentation>Marca de gestión habilitada</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="marcaCuentaTomada" type="xs:boolean">
+    <xs:annotation>
+      <xs:documentation>Marca que indica que la cuenta esta en proceso de Facturacion.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="rubroCuenta" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Rubro de la Cuenta</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="subRubroCuenta" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Sub rubro de la cuenta</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="sistemaOrigenAlta" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Sistema donde se origino el alta de la cuenta, debe coincidir con un codAplicacion</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="tipoCuenta">
+    <xs:annotation>
+      <xs:documentation>Tipo de cuenta</xs:documentation>
+    </xs:annotation>
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:pattern value="(CORP|IND){0,1}" />
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="codCuentaPadre" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Codigo del cliente padre</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="codCuentaRaiz" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Codigo del cliente raiz</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="nivelCuenta" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Nivel de la cuenta</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="codPersonaContacto" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Id de la persona que oficia de contacto de la cuenta del cliente</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+    
+  <xs:complexType name="CuentaType">
+    <xs:sequence>
+      <xs:element ref="tns:codCuenta" />     
+      <xs:element ref="tns:estadoCuenta" />
+      <xs:element ref="tns:codEjecutivoCuenta" />
+      <xs:element ref="tns:fechaAltaCuenta" />
+      <xs:element ref="tns:fechaEstadoCuenta" />
+      <xs:element ref="tns:marcaGestionHabilitada" />
+      <xs:element ref="tns:marcaCuentaTomada" />
+      <xs:element ref="tns:rubroCuenta" />
+      <xs:element ref="tns:subRubroCuenta" />
+      <xs:element ref="tns:sistemaOrigenAlta" />
+      <xs:element ref="tns:tipoCuenta" />        
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CuentaIndividualType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:CuentaType" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="CuentaCorporativaType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:CuentaType">
+        <xs:sequence>
+          <xs:element ref="tns:codCuentaPadre" />
+          <xs:element ref="tns:codCuentaRaiz" />
+          <xs:element ref="tns:nivelCuenta" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="marcaNoImpresionFactura" type="xs:boolean">
+    <xs:annotation>
+      <xs:documentation>Marca que indica que el cliente se adhirió al servicio de No impresión de factura</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="fechaMarcaNoImpresionFactura" type="com:fechaHora">
+      <xs:annotation>
+	<xs:documentation>Fecha en que cambió de estado la marca de NoImpresionFactura</xs:documentation>
+      </xs:annotation>
+  </xs:element>
+  <xs:element name="fechaUltimoMovimientoCuenta" type="com:fechaHora">
+    <xs:annotation>
+      <xs:documentation>Fecha-hora en que la cuenta tuvo su ultimo movimiento</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  
+  <xs:element name="codCuentaTasacion" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Identificador unico de la cuenta de tasacion</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="fechaAltaCuentaTasacion" type="com:fechaHora">
+    <xs:annotation>
+      <xs:documentation>Fecha de alta de la cuenta de tasacion</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="fechaBajaCuentaTasacion" type="com:fechaHora">
+    <xs:annotation>
+      <xs:documentation>Fecha de baja de la cuenta de tasacion</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="fechaModificacionCuentaTasacion" type="com:fechaHora">
+    <xs:annotation>
+      <xs:documentation>Fecha de modificacion de la cuenta de tasacion</xs:documentation>
+    </xs:annotation>
+  </xs:element>  
+
+  <xs:element name="codEstadoCuentaTasacion">
+		<xs:annotation> 
+			<xs:documentation>Estado de la cuenta de tasacion</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="A">
+					<xs:annotation> <xs:documentation>Activa</xs:documentation> </xs:annotation>
+				</xs:enumeration>
+				<xs:enumeration value="D">
+					<xs:annotation>	<xs:documentation>Desactiva</xs:documentation> </xs:annotation>
+				</xs:enumeration>
+				<xs:enumeration value="S">
+					<xs:annotation>	<xs:documentation>Suspendida</xs:documentation> </xs:annotation>
+				</xs:enumeration>				
+				<xs:enumeration value="B">
+					<xs:annotation>	<xs:documentation>Bloqueada</xs:documentation> </xs:annotation>
+				</xs:enumeration>
+				<xs:enumeration value="C">
+					<xs:annotation>	<xs:documentation>Creada pero no activa</xs:documentation> </xs:annotation>
+				</xs:enumeration>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+  <xs:element name="fechaEstadoCuentaTasacion" type="com:fechaHora">
+    <xs:annotation>
+      <xs:documentation>Fecha del estado de la cuenta de tasacion</xs:documentation>
+    </xs:annotation>
+  </xs:element> 
+  <xs:element name="idCuenta" type="xs:string" nillable="true">
+    <xs:annotation>
+      <xs:documentation>Agregado: 22-may-2017. Identificador unico de la Cuenta al igual que codCuenta</xs:documentation>
+    </xs:annotation>
+  </xs:element>  
+</xs:schema>

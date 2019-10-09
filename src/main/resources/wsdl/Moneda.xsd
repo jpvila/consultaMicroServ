@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<xs:schema xmlns:com="http://www.personal.com.ar/Common" xmlns:tns="http://www.personal.com.ar/Common/Entities/NegocioComun/Moneda/v1.0" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.personal.com.ar/Common/Entities/NegocioComun/Moneda/v1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="Diccionario.xsd" namespace="http://www.personal.com.ar/Common" />
+  <xs:element name="codMoneda">
+    <xs:annotation>
+      <xs:documentation>Identificador de la moneda </xs:documentation>
+    </xs:annotation>
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+
+        <xs:enumeration value="ARS">
+          <xs:annotation>
+            <xs:documentation>Peso argentino</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+
+        <xs:enumeration value="DOL">
+          <xs:annotation>
+            <xs:documentation>Dólar</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+
+        <xs:enumeration value="EUR">
+          <xs:annotation>
+            <xs:documentation>Euro</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+
+
+        <xs:enumeration value="REA">
+          <xs:annotation>
+            <xs:documentation>Real</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+
+        <xs:length value="3"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+
+  <xs:element name="descripcionMoneda" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Descripción de la moneda</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="MonedaType">
+    <xs:sequence>
+      <xs:element ref="tns:codMoneda" />
+      <xs:element ref="tns:descripcionMoneda" />
+    </xs:sequence>
+  </xs:complexType>
+	<xs:element name="tasaDeCambio" type="com:decimal_4_decimales">
+		<xs:annotation>
+			<xs:documentation>Agregado 6-Sep-2017. Tasa de cambio o de conversion entre monedas. CurrencyRate</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>

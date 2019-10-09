@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Created with Liquid XML Studio 1.0.8.0 (http://www.liquid-technologies.com) -->
+<xs:schema xmlns:com="http://www.personal.com.ar/Common" xmlns:tns="http://www.personal.com.ar/Common/Entities/Cliente/MedioDePago/v2.0" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.personal.com.ar/Common/Entities/Cliente/MedioDePago/v2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="Diccionario.xsd" namespace="http://www.personal.com.ar/Common" />
+  <xs:element name="codMedioPago">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:enumeration value="EFE">
+          <xs:annotation>
+            <xs:documentation>Efectivo</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="TAR">
+          <xs:annotation>
+            <xs:documentation>Tarjeta de credito</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="CHE">
+          <xs:annotation>
+            <xs:documentation>Cheque</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="CHD">
+          <xs:annotation>
+            <xs:documentation>Cheque diferido</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="GPO">
+          <xs:annotation>
+            <xs:documentation>Giro postal</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="BON">
+          <xs:annotation>
+            <xs:documentation>Bonos</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="CAN">
+          <xs:annotation>
+            <xs:documentation>Canje publicitario</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="RET">
+          <xs:annotation>
+            <xs:documentation>Retenciones</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="DCA">
+          <xs:annotation>
+            <xs:documentation>Descuento de comisiones a agentes</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="DCB">
+          <xs:annotation>
+            <xs:documentation>Descuento de comisiones bancarias</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="MEP">
+          <xs:annotation>
+            <xs:documentation>Transferencia bancaria via MEP</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="PAG">
+          <xs:annotation>
+            <xs:documentation>Pagare</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="CVM">
+          <xs:annotation>
+            <xs:documentation>Compensacion mayorista</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="TVR">
+          <xs:annotation>
+            <xs:documentation>Puntos TravelPass</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="DFP">
+          <xs:annotation>
+            <xs:documentation>Debito proxima factura</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="DCM">
+          <xs:annotation>
+            <xs:documentation>Descuento comision mayorista</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="PCM">
+          <xs:annotation>
+            <xs:documentation>Compensacion minorista</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="CHB">
+          <xs:annotation>
+            <xs:documentation>Cheque con boleta</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="EFB">
+          <xs:annotation>
+            <xs:documentation>Efectivo con boleta</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="DAI">
+          <xs:annotation>
+            <xs:documentation>Doc ajuste interno</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="CMB">
+          <xs:annotation>
+            <xs:documentation>Comision bancaria</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="PDC">
+          <xs:annotation>
+            <xs:documentation>Desestimiento cobro</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="RPE">
+          <xs:annotation>
+            <xs:documentation>IVA</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="CLP">
+          <xs:annotation>
+            <xs:documentation>Club Personal</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="DDO">
+          <xs:annotation>
+            <xs:documentation>Descuento docs</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="ACA">
+          <xs:annotation>
+            <xs:documentation>Ajuste Cta Agte/VT</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="DSA">
+          <xs:annotation>
+            <xs:documentation>Debito saldo cliente</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="CNC">
+          <xs:annotation>
+            <xs:documentation>Compensación Nota de Crédito</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="PRE">
+          <xs:annotation>
+            <xs:documentation>Préstamo</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="REC">
+          <xs:annotation>
+            <xs:documentation>Recarga</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="TRA">
+          <xs:annotation>
+            <xs:documentation>Transferencia</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="FOR">
+          <xs:annotation>
+            <xs:documentation>Pago forzado - Payment in force</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="AJU">
+          <xs:annotation>
+            <xs:documentation>Ajuste</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="PCR">
+          <xs:annotation>
+            <xs:documentation>Reverso de recarga - Payment cancellation due to recharge reversal</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="DEB">
+          <xs:annotation>
+            <xs:documentation>Tarjeta de debito</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="BNF">
+          <xs:annotation>
+            <xs:documentation>Bonificado. Esto aplica para productos que se adquieren a costo cero ya sea por ser bonificacion u otro motivo. Agregado: 12-ABR-2017</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="descripcionMedioPago" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Descripcion del medio de pago</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="codCheque" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Código interno del cheque</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="estadoCheque">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:pattern value="(EnCartera|Rechazado|Rescatado|Imputado|Retenido){0,1}" />
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="motivoEstadoCheque" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Motivo del estado del cheque.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="fechaDiferida" type="com:fechaHora">
+    <xs:annotation>
+      <xs:documentation>Fecha de inicio desde que puedo cobrar</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="fechaEmisionCheque" type="com:fechaHora">
+    <xs:annotation>
+      <xs:documentation>Fecha de emision del cheque</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="fechaVencimientoCheque" type="com:fechaHora">
+    <xs:annotation>
+      <xs:documentation>Fecha de vencimiento del cheque</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="fechaVencimientoComp" type="com:fechaHora">
+    <xs:annotation>
+      <xs:documentation>Fecha de vencimiento generica de cualquier comprobante</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="nroCheque" type="xs:integer">
+    <xs:annotation>
+      <xs:documentation>Numero del cheque</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="cantidadCuotasTarjeta" type="xs:integer">
+    <xs:annotation>
+      <xs:documentation>Cantidad de cuotas en la tarjeta</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="codAutorizacion" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Codigo de autorizacion de la tarjeta</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="nroComercio" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Numero de comercio</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="nroCuponTarjeta" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Numero de cupon de la tarjeta</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="nroLoteTarjeta" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Numero de lote de la tarjeta</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="nroTransaccionTarjeta" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Nro de transaccion tarjeta de credito.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="tipoCuponTarjeta">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:pattern value="(Posnet|Manual|WonderSoft){0,1}" />
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="nroTarjeta">
+    <xs:annotation>
+      <xs:documentation>Numero de la tarjeta</xs:documentation>
+    </xs:annotation>
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:pattern value="([0-9]+){0,1}" />
+        <xs:maxLength value="20" />
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="fechaVencimientoTarjeta" type="com:fecha_mesAnio">
+    <xs:annotation>
+      <xs:documentation>Vencimiento de la tarjeta</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="fechaEmisionTarjeta" type="com:fecha_mesAnio">
+    <xs:annotation>
+      <xs:documentation>Fecha de emision de la tarjeta</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="codSeguridadTarjeta" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Codigo de seguridad de la tarjeta</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="tarjeta">
+    <xs:annotation>
+      <xs:documentation>Tarjeta de crédito o débito</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="tns:nroTarjeta" />
+        <xs:element ref="tns:fechaVencimientoTarjeta" />
+        <xs:element ref="tns:fechaVencimientoCheque" />
+        <xs:element ref="tns:codSeguridadTarjeta" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="fechaAltaDebitoAutomatico" type="com:fechaHora">
+    <xs:annotation>
+      <xs:documentation>Fecha de alta del debito automatico</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="fechaBajaDebitoAutomatico" type="com:fechaHora">
+    <xs:annotation>
+      <xs:documentation>Fecha de baja del debito automatico</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="fechaModificacionDebitoAutomatico" type="com:fechaHora">
+    <xs:annotation>
+      <xs:documentation>Fecha de modificacion del debito automatico</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="fechaAltaDebitoDirecto" type="com:fechaHora">
+    <xs:annotation>
+      <xs:documentation>Fecha de alta del debito directo</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="fechaBajaDebitoDirecto" type="com:fechaHora">
+    <xs:annotation>
+      <xs:documentation>Fecha de baja del debito directo</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="fechaModificacionDebitoDirecto" type="com:fechaHora">
+    <xs:annotation>
+      <xs:documentation>Fecha de modificacion del debito directo</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="trackTarjeta" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Track de la tarjeta. Puede corresponder al track 1 o 2</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="codTarjeta" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Codigo interno de la tarjeta</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="nroTarjetaEncriptado" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Es el campo nroTarjeta pero encriptado, por lo cual es string generico sin restricciones</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="ultimosDigitosTarjeta">
+    <xs:annotation>
+      <xs:documentation>Ultimos digitos del nroTarjeta que generalmente piden para identificar una tarjeta sin colocar el numero completo</xs:documentation>
+    </xs:annotation>
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:pattern value="([0-9]+){0,1}" />
+        <xs:maxLength value="20" />
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="fechaCuponTarjeta" type="com:fechaHora">
+    <xs:annotation>
+      <xs:documentation>Agregado: 31/03/2017. Fecha de emision del cupon de la tarjeta. Esta fecha podria ser la misma que fechaPago.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="codFormaDePago" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Agregado: 22-may-2017. Codigo de la forma de pago, por ej Activo en el momento o Automatico diferido. En HW AcctPayMethod</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="diaImputacionPago" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Agregado: 22-may-2017. Día en que se imputa el pago, que podria ser el día por débito automático dentro del mes o el dia de la recarga automatica. En HW AutoPayDate y AutoRechargeDate</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="montoMaximoDebito" type="com:Monto_4_decimales">
+    <xs:annotation>
+      <xs:documentation>Agregado: 22-May-2017. Monto maximo permitido a debitar</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+	
+  <xs:element name="marcaTarjetaActiva" type="xs:boolean">
+    <xs:annotation>
+      <xs:documentation>Agregado: 6-dic-2017. Es verdadero cuando la tarjeta se encuentra activa.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="nombreTarjeta" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Agregado: 6-dic-2017. Nombre de la tarjeta por ej VISA, MASTER, CMR, CABAL, MAESTRO, ELECTRON, etc. Muchas veces coincide con el atributo nombreEntidadTC</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="mesVtoTarjeta" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Agregado: 6-dic-2017. Mes de vencimiento de la tarjeta. Es un sub-string del campo fechaVencimientoTarjeta</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="anioVtoTarjeta" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Agregado: 6-dic-2017. Año de vencimiento de la tarjeta. No ponemos la letra ENIE para evitar errores. Es un sub-string del campo fechaVencimientoTarjeta</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="marcaTarjetaPrincipal" type="xs:boolean">
+    <xs:annotation>
+      <xs:documentation>Agregado: 6-dic-2017. Es verdadero cuando la tarjeta indicada es la marcada como principal para un cliente dado</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+</xs:schema>

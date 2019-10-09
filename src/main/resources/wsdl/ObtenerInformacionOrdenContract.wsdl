@@ -1,0 +1,94 @@
+<s0:definitions xmlns:s0="http://schemas.xmlsoap.org/wsdl/" xmlns:s2="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.personal.com.ar/ESB/ObtenerInformacionOrden/v1.0" xmlns:reqHead="http://www.personal.com.ar/Common/RequestMessageHeader/v1.0" xmlns:resHead="http://www.personal.com.ar/Common/ResponseMessageHeader/v1.0" xmlns:errDet="http://www.personal.com.ar/Common/ErrorDetail/v1.0" targetNamespace="http://www.personal.com.ar/ESB/ObtenerInformacionOrden/v1.0">
+	<s0:types>
+		<s:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.personal.com.ar/ESB/ObtenerInformacionOrden/v1.0" xmlns:tns="http://www.personal.com.ar/ESB/ObtenerInformacionOrden/v1.0" xmlns:cw="http://www.openuri.org/2002/04/wsdl/conversation/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:com="http://www.personal.com.ar/Common" xmlns:errDet="http://www.personal.com.ar/Common/ErrorDetail/v1.0" xmlns:reqHead="http://www.personal.com.ar/Common/RequestMessageHeader/v1.0" xmlns:resHead="http://www.personal.com.ar/Common/ResponseMessageHeader/v1.0" xmlns:orden="http://www.personal.com.ar/Common/Entities/NegocioComun/Orden/v1.0" xmlns:fin="http://www.personal.com.ar/Common/Entities/NegocioComun/EntidadFinanciera/v1.0" xmlns:mon="http://www.personal.com.ar/Common/Entities/NegocioComun/Moneda/v1.0" xmlns:pago="http://www.personal.com.ar/Common/Entities/Cliente/Pago/v3.0" xmlns:mediopago="http://www.personal.com.ar/Common/Entities/Cliente/MedioDePago/v2.0">
+			<s:import namespace="http://www.personal.com.ar/Common" schemaLocation="Diccionario.xsd"/>
+			<s:import namespace="http://www.personal.com.ar/Common/ErrorDetail/v1.0" schemaLocation="ErrorDetail.xsd"/>
+			<s:import namespace="http://www.personal.com.ar/Common/RequestMessageHeader/v1.0" schemaLocation="RequestMessageHeader_v10.xsd"/>
+			<s:import namespace="http://www.personal.com.ar/Common/ResponseMessageHeader/v1.0" schemaLocation="ResponseMessageHeader_v10.xsd"/>
+			<s:import namespace="http://www.personal.com.ar/Common/Entities/NegocioComun/Orden/v1.0" schemaLocation="Orden.xsd"/>
+			<s:import namespace="http://www.personal.com.ar/Common/Entities/NegocioComun/EntidadFinanciera/v1.0" schemaLocation="EntidadFinanciera.xsd"/>
+			<s:import namespace="http://www.personal.com.ar/Common/Entities/Cliente/Pago/v3.0" schemaLocation="Pago_v30.xsd"/>
+			<s:import namespace="http://www.personal.com.ar/Common/Entities/Cliente/MedioDePago/v2.0" schemaLocation="MedioDePago_v20.xsd"/>
+			<!-- Request ObtenerInformacionOrdenRequest -->
+			<s:element name="ObtenerInformacionOrdenRequest">
+				<s:annotation>
+					<s:documentation>No hay descripcion para este servicio</s:documentation>
+				</s:annotation>
+				<s:complexType>
+					<s:sequence>
+						<s:element ref="orden:codOrden" minOccurs="1" maxOccurs="1"/>
+						<s:element name="tipoOperacion" type="s:string" minOccurs="1" maxOccurs="1"/>
+						<s:element ref="mediopago:nroCuponTarjeta" minOccurs="0" maxOccurs="1"/>
+						<s:element ref="pago:fechaPago" minOccurs="0" maxOccurs="1"/>
+						<s:element name="usuario" type="s:string" minOccurs="1" maxOccurs="1"/>
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<!-- RESPONSE ObtenerInformacionOrdenResponse -->
+			<s:element name="ObtenerInformacionOrdenResponse">
+				<s:annotation>
+					<s:documentation>No hay descripcion para este servicio</s:documentation>
+				</s:annotation>
+				<s:complexType>
+					<s:sequence>
+						<s:element ref="orden:codOrden" minOccurs="1" maxOccurs="1"/>
+						<s:element ref="pago:importePago" minOccurs="1" maxOccurs="1"/>
+						<s:element name="cantidadTarjetas" type="s:integer" minOccurs="1" maxOccurs="1"/>
+						<s:element name="medioDePago" type="s:string" minOccurs="1" maxOccurs="1"/>
+						<s:element ref="mediopago:cantidadCuotasTarjeta" minOccurs="1" maxOccurs="1"/>
+						<s:element name="idCliente1" type="s:string" minOccurs="1" maxOccurs="1"/>
+						<s:element name="idCliente2" type="s:string" minOccurs="1" maxOccurs="1"/>
+						<s:element ref="mediopago:codTarjeta" minOccurs="1" maxOccurs="1"/>
+						<s:element ref="fin:codBanco" minOccurs="1" maxOccurs="1"/>
+						<s:element name="equipo" type="s:string" minOccurs="0" maxOccurs="1"/>
+						<s:element name="lineaDeProducto" type="s:string" minOccurs="1" maxOccurs="1"/>
+						<s:element name="planDePago" type="s:string" minOccurs="1" maxOccurs="1"/>
+						<s:element ref="mon:codMoneda" minOccurs="1" maxOccurs="1"/>
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+		</s:schema>
+	</s0:types>
+	<s0:message name="errorDetail">
+		<s0:part name="errorDetail" element="errDet:errorDetail"/>
+	</s0:message>
+	<s0:message name="requestHeader">
+		<s0:part name="requestHeader" element="reqHead:requestHeader"/>
+	</s0:message>
+	<s0:message name="responseHeader">
+		<s0:part name="responseHeader" element="resHead:responseHeader"/>
+	</s0:message>
+	<s0:message name="ObtenerInformacionOrdenRequestSoap">
+		<s0:part name="parameters" element="tns:ObtenerInformacionOrdenRequest"/>
+	</s0:message>
+	<s0:message name="ObtenerInformacionOrdenResponseSoap">
+		<s0:part name="parameters" element="tns:ObtenerInformacionOrdenResponse"/>
+	</s0:message>
+	<s0:portType name="ObtenerInformacionOrden">
+		<s0:operation name="ObtenerInformacionOrden">
+			<s0:input message="tns:ObtenerInformacionOrdenRequestSoap"/>
+			<s0:output message="tns:ObtenerInformacionOrdenResponseSoap"/>
+			<s0:fault name="errorDetail" message="tns:errorDetail"/>
+		</s0:operation>
+	</s0:portType>
+	<s0:binding name="ObtenerInformacionOrden" type="tns:ObtenerInformacionOrden">
+		<s2:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<s0:operation name="ObtenerInformacionOrden">
+			<s2:operation soapAction="http://www.personal.com.ar/ESB/ObtenerInformacionOrden/v1.0" style="document"/>
+			<s0:input>
+				<s2:body use="literal"/>
+				<s2:header message="tns:requestHeader" part="requestHeader" use="literal"/>
+			</s0:input>
+			<s0:output>
+				<s2:body use="literal"/>
+				<s2:header message="tns:responseHeader" part="responseHeader" use="literal"/>
+			</s0:output>
+			<s0:fault name="errorDetail"/>
+		</s0:operation>
+	</s0:binding>
+	<s0:service name="ObtenerInformacionOrden">
+		<s0:port name="ObtenerInformacionOrden" binding="tns:ObtenerInformacionOrden">
+			<s2:address location="https://mdwtpbust1.telecom.com.ar:8701/obtenerInformacionOrden"/>
+		</s0:port>
+	</s0:service>
+</s0:definitions>

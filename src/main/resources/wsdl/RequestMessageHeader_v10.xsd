@@ -1,0 +1,84 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.personal.com.ar/Common/RequestMessageHeader/v1.0" xmlns:tns="http://www.personal.com.ar/Common/RequestMessageHeader/v1.0">
+  <xs:annotation>
+    <xs:documentation>
+			Cabecera de mensaje para una invocación sincronica SOAP -  Copyright 2017 Personal.com.ar. Todos los derechos reservados.
+	</xs:documentation>
+  </xs:annotation>
+  <xs:element name="requestHeader" type="tns:RequestHeader"/>
+  <xs:complexType name="RequestHeader">
+    <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="consumer">
+          <xs:annotation>
+            <xs:documentation>Este grupo de datos contiene información acerca del sistema que quiere consumir un servicio</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="userID" type="xs:string">
+                <xs:annotation>
+                  <xs:documentation>En este campo el consumidor deberá enviar el usuario de interfase que Seguridad Informática otorgó para acceder a los servicios del Bus de Integración</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="credentials">
+                <xs:annotation>
+                  <xs:documentation>Datos que ofrecen seguridad al sevicio. Puede ser un certificado provisto por seguridad informatica, o el password del usuario</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:choice minOccurs="1" maxOccurs="1">
+                    <xs:element name="userCertificate" type="xs:string">
+                      <xs:annotation>
+                        <xs:documentation>En este campo se deberán informar las credenciales que autentiquen al consumidor. Estas deberán ser otorgadas por Seguridad Informática junto con el usuario de interfase</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="userPassword" type="xs:string">
+                      <xs:annotation>
+                        <xs:documentation>En este campo estará ingresado el password del usuario</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                  </xs:choice>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="code" type="xs:string" use="required">
+              <xs:annotation>
+                <xs:documentation>Identificador único de consumidor. Será establecido entre el ESB y los consumidores</xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="channel" type="xs:string" use="required">
+              <xs:annotation>
+                <xs:documentation>Es un campo descriptivo en el cual se colocará el canal al que pertenece el consumidor</xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="additionalData" type="xs:string" use="optional">
+              <xs:annotation>
+                <xs:documentation>Es un campo descriptivo en el cual se colocará información relevante para el consumidor separado por "|" en caso de necesitar varias</xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
+          </xs:complexType>
+        </xs:element>
+        <xs:element minOccurs="1" maxOccurs="1" name="message">
+          <xs:annotation>
+            <xs:documentation>Características del mensaje enviado</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element minOccurs="0" name="timestamp" type="xs:dateTime">
+                <xs:annotation>
+                  <xs:documentation>Timestamp en que se genera en mensaje </xs:documentation>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="messageId" type="xs:string">
+              <xs:annotation>
+                <xs:documentation>Identificador del mensaje. Deberá ser enviado cuando el transporte no sea MQ o JMS. Deberá ser un identificador único para cada mensaje enviado por un consumidor.</xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="consumerMessageId" type="xs:string">
+              <xs:annotation>
+                <xs:documentation>Identificador para anidamiento en los mensajes. Uso interno del ESB</xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
+          </xs:complexType>
+        </xs:element>        
+      </xs:sequence>
+  </xs:complexType>
+</xs:schema>

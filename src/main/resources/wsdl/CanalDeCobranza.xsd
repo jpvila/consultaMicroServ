@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<xs:schema xmlns:com="http://www.personal.com.ar/Common" xmlns:tns="http://www.personal.com.ar/Common/Entities/Ventas/CanalDeCobranza/v1.0" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.personal.com.ar/Common/Entities/Ventas/CanalDeCobranza/v1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="Diccionario.xsd" namespace="http://www.personal.com.ar/Common" />
+
+  <xs:element name="codCanalCobranza">    
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:enumeration value="PGF">
+          <xs:annotation>
+            <xs:documentation>Pago Fácil</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="DAU">
+          <xs:annotation>
+            <xs:documentation>Débito automático</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="DTO">
+          <xs:annotation>
+            <xs:documentation>Débito directo</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="OFC">
+          <xs:annotation>
+            <xs:documentation>Oficina comercial</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="VEN">
+          <xs:annotation>
+            <xs:documentation>Ventanilla bancaria</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="LIN">
+          <xs:annotation>
+            <xs:documentation>Red Link S.A.</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="BAN">
+          <xs:annotation>
+            <xs:documentation>Red Banelco</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="IVR">
+          <xs:annotation>
+            <xs:documentation>IVR</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="WAP">
+          <xs:annotation>
+            <xs:documentation>WAP</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="INT">
+          <xs:annotation>
+            <xs:documentation>Internet</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="PWB">
+          <xs:annotation>
+            <xs:documentation>Pago web</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="VMY">
+          <xs:annotation>
+            <xs:documentation>Ventas mayoristas</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="RST">
+          <xs:annotation>
+            <xs:documentation>Recarga de saldo por tarjeta</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="RSI">
+          <xs:annotation>
+            <xs:documentation>Recarga de saldo por internet</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="TPG">
+          <xs:annotation>
+            <xs:documentation>Telepago</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="TCB">
+          <xs:annotation>
+            <xs:documentation>Telecobranza</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:length value="3"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+
+  <xs:element name="descripcionCanalCobranza" type="xs:string"/>  
+  <xs:element name="codPlataformaPago" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Agregado 4-Sep-2017. Codigo o ID de la plataforma o gateway de pago</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+</xs:schema>

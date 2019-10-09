@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Created with Liquid XML Studio 1.0.8.0 (http://www.liquid-technologies.com) -->
+<xs:schema xmlns:com="http://www.personal.com.ar/Common" xmlns:tns="http://www.personal.com.ar/Common/Entities/NegocioComun/Actor/v3.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.personal.com.ar/Common/Entities/NegocioComun/Actor/v3.0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.personal.com.ar/Common" schemaLocation="Diccionario.xsd"/>
+	<xs:element name="codActor" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Codigo de actor</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="fechaNacimiento" type="com:fechaHora">
+		<xs:annotation>
+			<xs:documentation>Fecha de nacimiento o fecha de inicio de actividad</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="tipoDocumento">
+		<xs:annotation>
+			<xs:documentation>Tipo de documento valido</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="CUIT"/>
+				<xs:enumeration value="CUIL"/>
+				<xs:enumeration value="DNI"/>
+				<xs:enumeration value="LC"/>
+				<xs:enumeration value="LE"/>
+				<xs:enumeration value="CI"/>
+				<xs:enumeration value="PASAPORTE"/>
+				<xs:enumeration value="CIU"/>
+				<xs:enumeration value="PAU"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="tipoPersona">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="FISICA"/>
+				<xs:enumeration value="JURIDICA"/>
+				<xs:enumeration value="FISICAconCUIT"/>				
+				<xs:enumeration value="FISICAsinCUIT"/>	
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="tipoOrganizacion" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Tipo de organizacion. Se usa para informar el tipo de Compania. En el SID existe como Organization.type, que puede ser Club, Sociedad, etc.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="numeroDocumento"  type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Numero de documento (actualmente valida solo DNI, CUIT, CI, PASAPORTE, LC, LI, CUIL)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="ActorType" abstract="true">
+		<xs:sequence>
+			<xs:element ref="tns:codActor"/>
+			<xs:element ref="tns:fechaNacimiento"/>
+			<xs:element ref="tns:tipoDocumento"/>
+			<xs:element ref="tns:numeroDocumento"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="nombreFantasia" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Nombre de fantasia de la organizacion</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="razonSocial" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Razon social de la organizacion</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="OrganizacionType" mixed="false">
+		<xs:complexContent mixed="false">
+			<xs:extension base="tns:ActorType">
+				<xs:sequence>
+					<xs:element ref="tns:nombreFantasia"/>
+					<xs:element ref="tns:razonSocial"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="nombre" type="xs:string">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="apellido" type="xs:string">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="genero">
+		<xs:annotation>
+			<xs:documentation>Sexo de una persona (M,F)</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="1" fixed="true"/>
+				<xs:pattern value="(M|F|U){0,1}"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="tituloCortesia" type="xs:string">
+		<xs:annotation>
+			<xs:documentation> Titulo de cortesia del individuo. Por ej Sr, Sra, Srita, etc</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="marcaExistenciaPadron" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>Marca que indica si existe en el Padron electoral o no</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="IndividuoType" mixed="false">
+		<xs:complexContent mixed="false">
+			<xs:extension base="tns:ActorType">
+				<xs:sequence>
+					<xs:element ref="tns:nombre"/>
+					<xs:element ref="tns:apellido"/>
+					<xs:element ref="tns:tituloCortesia"/>
+					<xs:element ref="tns:marcaExistenciaPadron"/>
+					<xs:element ref="tns:genero"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="individuo" type="tns:IndividuoType"/>
+	<xs:element name="organizacion" type="tns:OrganizacionType"/>
+	<xs:element name="actor">
+		<xs:complexType>
+			<xs:choice>
+				<xs:element ref="tns:organizacion"/>
+				<xs:element ref="tns:individuo"/>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="RolActorType">
+		<xs:sequence>
+			<xs:element ref="tns:actor"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="codGerencia" type="xs:string"/>
+	<xs:complexType name="GerenciaType">
+		<xs:complexContent>
+			<xs:extension base="tns:RolActorType">
+				<xs:sequence>
+					<xs:element ref="tns:codGerencia"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="nombreActor" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Es la Razón social y/o el nombre y apellido del individuo todo junto</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="sectorActividad" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Sector de la Actividad objeto del negocio</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="rolActor" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Rol del actor respecto a la empresa. Por ej: cliente, partner, proveedor, usuario, empleado, usuario producto, apoderado legal, etc</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="edad" type="com:entero">
+		<xs:annotation>
+			<xs:documentation>Edad del actor. En caso que sea una persona juridica, seria la antiguedad de la empresa</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="ejemplarDocumento" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Indica si el documento del actor es original, duplicado, triplicado, etc</xs:documentation>
+		</xs:annotation>
+	</xs:element>	
+	<xs:element name="segundoNombre" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Agregado: 22-may-2017. Segundo nombre</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="fechaValidezDocumento" type="com:fechaHora">
+		<xs:annotation>
+			<xs:documentation>Agregado: 17-jul-2017. Fecha de validez o fecha de vencimiento del Documento del Actor.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>

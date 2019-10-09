@@ -11,22 +11,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.demo.teco.webservices.ConsultaFacturasMIC;
 import com.demo.teco.webservices.ConsultaFacturasMICResponse;
+import com.demo.teco.webservices.ObtenerInformacionOrdenRequest;
 import com.demo.teco.webservices.client.SoapCobranzaElectronicaCliente;
 
 
 @SpringBootApplication
-@RestController
 public class ConsultaMicroServApplication {
-	@Autowired
-	private SoapCobranzaElectronicaCliente clinet;
+
 	
 	private static final Logger LOGGER = LogManager.getLogger(ConsultaMicroServApplication.class);
 	
-	
-	@PostMapping("/consultaMIC")
-	public ConsultaFacturasMICResponse invokeSoapClientToGetLoanStatus(@RequestBody ConsultaFacturasMIC request) {
-		return clinet.consultaFacturasMIC(request.getTipo(), request.getValue1(), request.getValue2(), "pruab", "", "");
-	}
 	
 	public static void main(String[] args) {
 	

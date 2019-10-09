@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.personal.com.ar/Common/Entities/Cliente/Comprobante/v3.0" xmlns:com="http://www.personal.com.ar/Common" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.personal.com.ar/Common/Entities/Cliente/Comprobante/v3.0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.personal.com.ar/Common" schemaLocation="Diccionario.xsd"/>
+	<xs:element name="codComprobante" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Código del comprobante</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="estadoComprobante">
+		<xs:annotation>
+			<xs:documentation>Estado del comprobante. Este atributo a partir de Huawei queda en desuso, pasa a usarse codEstadoComprobante</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="P">
+					<xs:annotation>
+						<xs:documentation>Pago</xs:documentation>
+					</xs:annotation>
+				</xs:enumeration>
+				<xs:enumeration value="I">
+					<xs:annotation>
+						<xs:documentation>Impago</xs:documentation>
+					</xs:annotation>
+				</xs:enumeration>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="fechaAltaComprobante" type="com:fechaHora">
+		<xs:annotation>
+			<xs:documentation>Fecha de alta del comprobante</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="fechaEmisionComprobante" type="com:fechaHora">
+		<xs:annotation>
+			<xs:documentation>Fecha de emision del comprobante</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="fechaEnvioComprobante" type="com:fechaHora">
+		<xs:annotation>
+			<xs:documentation>Fecha de envio al cliente</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="fechaVencimientoComprobante" type="com:fechaHora">
+		<xs:annotation>
+			<xs:documentation>Fecha de vencimiento del comprobante</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="importeComprobante" type="com:Monto_4_decimales_neg">
+		<xs:annotation>
+			<xs:documentation>Monto total del comprobante</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="importeNC" type="com:Monto_4_decimales_neg">
+		<xs:annotation>
+			<xs:documentation>Monto total de la nota de crédito</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="importeND" type="com:Monto_4_decimales_neg">
+		<xs:annotation>
+			<xs:documentation>Monto total de la nota de débito</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="importeComprobanteImpago" type="com:Monto_4_decimales_neg">
+		<xs:annotation>
+			<xs:documentation>Monto impago</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="importeComprobantePago" type="com:Monto_4_decimales_neg">
+		<xs:annotation>
+			<xs:documentation>Monto pagado</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="numeroComprobante" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Número del comprobante.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="tipoComprobante">
+		<xs:annotation>
+			<xs:documentation>Tipo de comprobante</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="NC">
+					<xs:annotation>
+						<xs:documentation>Nota de crédito</xs:documentation>
+					</xs:annotation>
+				</xs:enumeration>
+				<xs:enumeration value="ND">
+					<xs:annotation>
+						<xs:documentation>Nota de débito</xs:documentation>
+					</xs:annotation>
+				</xs:enumeration>
+				<xs:enumeration value="FV">
+					<xs:annotation>
+						<xs:documentation>Factura de venta</xs:documentation>
+					</xs:annotation>
+				</xs:enumeration>
+				<xs:enumeration value="FT">
+					<xs:annotation>
+						<xs:documentation>Factura de tráfico</xs:documentation>
+					</xs:annotation>
+				</xs:enumeration>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="descripcionItemComprobante" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Descripcion que se muestra en el item del comprobante</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="fechaPagoItem" type="com:fechaHora">
+		<xs:annotation>
+			<xs:documentation>Fecha de pago</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="importeItemComprobante" type="com:Monto_4_decimales_neg">
+		<xs:annotation>
+			<xs:documentation>Monto total asociado al ítem</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="importeItemComprobanteImpago" type="com:Monto_4_decimales_neg">
+		<xs:annotation>
+			<xs:documentation>Monto de item impago</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="importeItemComprobantePago" type="com:Monto_4_decimales_neg">
+		<xs:annotation>
+			<xs:documentation>Monto de item pagado</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="nroItemComprobante" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Codigo de item de factura</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="tipoItemComprobante" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Tipo item de factura</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="ComprobanteType">
+		<xs:sequence>
+			<xs:element ref="tns:codComprobante"/>
+			<xs:element ref="tns:estadoComprobante"/>
+			<xs:element ref="tns:fechaAltaComprobante"/>
+			<xs:element ref="tns:fechaEmisionComprobante"/>
+			<xs:element ref="tns:fechaEnvioComprobante"/>
+			<xs:element ref="tns:fechaVencimientoComprobante"/>
+			<xs:element ref="tns:importeComprobante"/>
+			<xs:element ref="tns:importeComprobanteImpago"/>
+			<xs:element ref="tns:importeComprobantePago"/>
+			<xs:element ref="tns:numeroComprobante"/>
+			<xs:element ref="tns:tipoComprobante"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ItemComprobanteType">
+		<xs:sequence>
+			<xs:element ref="tns:descripcionItemComprobante"/>
+			<xs:element ref="tns:fechaPagoItem"/>
+			<xs:element ref="tns:importeItemComprobante"/>
+			<xs:element ref="tns:importeItemComprobanteImpago"/>
+			<xs:element ref="tns:importeItemComprobantePago"/>
+			<xs:element ref="tns:nroItemComprobante"/>
+			<xs:element ref="tns:tipoItemComprobante"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="diasGraciaFactura" type="com:entero">
+		<xs:annotation>
+			<xs:documentation>Dias de gracia</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="montoDescuentos" type="com:Monto_4_decimales_neg">
+		<xs:annotation>
+			<xs:documentation>Monto de descuento</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="cantUnidadesLibresFac" type="com:entero">
+		<xs:annotation>
+			<xs:documentation>Cantidad de Unidades Libres</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="fechaTraficoFacturado" type="com:fechaHora">
+		<xs:annotation>
+			<xs:documentation>Fecha de facturación del tráfico.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="importeConDtoTraficoFac" type="com:Monto_4_decimales_neg">
+		<xs:annotation>
+			<xs:documentation>Monto con descuento</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="importeTraficoFacturado" type="com:Monto_4_decimales_neg">
+		<xs:annotation>
+			<xs:documentation>
+        Monto de trafico facturado
+      </xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="TraficoFacturadoType">
+		<xs:sequence>
+			<xs:element ref="tns:cantUnidadesLibresFac"/>
+			<xs:element ref="tns:fechaTraficoFacturado"/>
+			<xs:element ref="tns:importeConDtoTraficoFac"/>
+			<xs:element ref="tns:importeTraficoFacturado"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="fechaCorteComprobante" type="com:fechaHora"/>
+	<xs:element name="codNotaCredito" type="xs:string"/>
+	<xs:element name="codNotaDebito" type="xs:string"/>
+	<xs:element name="marcaTraficoFacturado" type="xs:boolean"/>
+	<xs:element name="categoriaComprobante">
+		<xs:annotation>
+			<xs:documentation>Categoría de comprobante, dependiendo de la categoría impositiva del cliente al que se le emita dicho comprobante</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="A"/>
+				<xs:enumeration value="B"/>
+				<xs:enumeration value="C"/>
+				<xs:enumeration value="E"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="fechaCierreComprobante" type="com:fechaHora">
+		<xs:annotation>
+			<xs:documentation>Fecha de cierre del comprobante</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="codEstadoComprobante">
+		<xs:annotation>
+			<xs:documentation>Agregado 8-SEP-2017. Estado del comprobante. Atributo que reemplaza al original estadoComprobante</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="O">
+					<xs:annotation>
+						<xs:documentation>OPEN - Comprobante abierto o IMPAGO</xs:documentation>
+					</xs:annotation>
+				</xs:enumeration>
+				<xs:enumeration value="C">
+					<xs:annotation>
+						<xs:documentation>CLOSED - Comprobante cerrado o PAGO</xs:documentation>
+					</xs:annotation>
+				</xs:enumeration>
+				<xs:enumeration value="D">
+					<xs:annotation>
+						<xs:documentation>DISPUTED - Comprobante en disputa</xs:documentation>
+					</xs:annotation>
+				</xs:enumeration>
+				<xs:enumeration value="P">
+					<xs:annotation>
+						<xs:documentation>PENDING - Comprobante pendiente de pago, cuando la cuenta tiene asociado debito o autopago</xs:documentation>
+					</xs:annotation>
+				</xs:enumeration>
+				<xs:enumeration value="R">
+					<xs:annotation>
+						<xs:documentation>REVERSED - Comprobante revertido</xs:documentation>
+					</xs:annotation>
+				</xs:enumeration>
+				<xs:enumeration value="W">
+					<xs:annotation>
+						<xs:documentation>WRITTEN OFF - Comprobante anulado</xs:documentation>
+					</xs:annotation>
+				</xs:enumeration>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="importeEnDisputa" type="com:Monto_4_decimales_neg">
+		<xs:annotation>
+			<xs:documentation>Agregado 13-sep-17. Monto del comprobante en disputa</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="importeImpuestoFactura" type="com:Monto_4_decimales_neg">
+		<xs:annotation>
+			<xs:documentation>Agregado 01-nov-17. Monto de impuesto de la factura.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="importePendienteImpuestoFactura" type="com:Monto_4_decimales_neg">
+		<xs:annotation>
+			<xs:documentation>Agregado 01-nov-17. Monto pendiente de impuesto en la factura.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="numeroComprobanteLegal" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Agregado 15-nov-17. Número Legal del comprobante. Es el que se imprime en la factura.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>

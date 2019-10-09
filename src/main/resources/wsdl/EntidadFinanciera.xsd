@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Created with Liquid XML Studio 1.0.8.0 (http://www.liquid-technologies.com) -->
+<xs:schema xmlns:com="http://www.personal.com.ar/Common" xmlns:tns="http://www.personal.com.ar/Common/Entities/NegocioComun/EntidadFinanciera/v1.0" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.personal.com.ar/Common/Entities/NegocioComun/EntidadFinanciera/v1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="Diccionario.xsd" namespace="http://www.personal.com.ar/Common" />
+  <xs:complexType name="EntidadFinancieraType"/>
+
+  <xs:element name="codEntidadFinanciera" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Atributo de carácter genérico, que en ciertos servicios se utilizará como parámetro para referenciar a codBanco, codEntidadTC o codGIRE</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="tipoEntidadFinanciera">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:enumeration value="REC">
+          <xs:annotation>
+            <xs:documentation>Ente recaudador</xs:documentation>
+          </xs:annotation>          
+        </xs:enumeration>
+        <xs:enumeration value="CON">
+          <xs:annotation>
+            <xs:documentation>Ente concentrador</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="TAR">
+          <xs:annotation>
+            <xs:documentation>Tarjeta de crédito</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  
+  <xs:element name="codEntidadTC" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Código de la Entidad Emisora de Tarjetas de Crédito</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="nombreEntidadTC" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Nombre de la entidad emisora de Tarjetas de Crédito</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="EntidadTarjetaCreditoType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:EntidadFinancieraType">
+        <xs:sequence>
+          <xs:element ref="tns:codEntidadTC" />
+          <xs:element ref="tns:nombreEntidadTC" />          
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="codEnteRecaudador" type="xs:string"/>
+    
+  <xs:element name="comisionEnteRecaudador" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Porcentaje de comisión del Ente recaudador</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="descripcionEnteRecaudador" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Descripcion del ente recaudador</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="EnteRecaudadorType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:EntidadFinancieraType">
+        <xs:sequence>
+          <xs:element ref="tns:codEnteRecaudador"/>
+          <xs:element ref="tns:comisionEnteRecaudador" />
+          <xs:element ref="tns:descripcionEnteRecaudador" />          
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="codBanco" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>codigo del banco</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="nombreBanco" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Nombre del banco</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="BancoType">    
+    <xs:sequence>
+      <xs:element ref="tns:codBanco" />
+      <xs:element ref="tns:nombreBanco" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:element name="codPagoFacil" type="xs:string"/>
+  <xs:complexType name="PagoFacilType">
+    <xs:sequence>
+      <xs:element ref="tns:codPagoFacil"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GireType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:EnteRecaudadorType">
+        <xs:sequence>
+          <xs:element ref="tns:codGIRE"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="codGIRE" type="xs:string"/>
+  <xs:element name="codSucursalBanco" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Codigo de la sucursal del banco</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="descripcionSucursalBanco" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Descripcion de la sucursal del banco</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="SucursalBancoType">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="tns:codSucursalBanco" />
+        <xs:element ref="tns:descripcionSucursalBanco" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CBU" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Codigo bancario unico</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="fechaAltaCtaBancaria" type="com:fecha">
+    <xs:annotation>
+      <xs:documentation>Fecha de alta de la cuenta bancaria.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="nroCuentaBancaria" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Numero de la cuenta bancaria.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="CuentaBancariaType">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="tns:CBU" />
+        <xs:element ref="tns:fechaAltaCtaBancaria" />
+        <xs:element ref="tns:nroCuentaBancaria" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="codEnteConcentrador">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:enumeration value="TPA">
+          <xs:annotation>
+            <xs:documentation>Telecom Personal Argentina</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="GIRE"/>
+        <xs:enumeration value="PGF">
+          <xs:annotation>
+            <xs:documentation>SEPSA (Págo Fácil)</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="BCO_RIO">
+          <xs:annotation>
+            <xs:documentation>Banco Río de la Plata</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="BANELCO">
+          <xs:annotation>
+            <xs:documentation>Banco Río de la Plata</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="LINK">
+          <xs:annotation>
+            <xs:documentation>Link</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="nombreEntidadFinanciera" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Nombre de la Entidad Financiera. Es igual a nombreBanco cuando la entidad es un banco</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="codSucursalEntidad" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Codigo de la sucursal de la entidad financiera. Es igual codSucursalBanco cuando la entidad es un banco</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="tipoCtaBancaria" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Tipo de cuenta bancaria, gralmente indica si es Caja de ahorro o Cuenta corriente, o podria ser si es de debito o credito</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  
+</xs:schema>
